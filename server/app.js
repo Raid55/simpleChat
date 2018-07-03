@@ -1,4 +1,4 @@
-
+/* eslint-env node */
 // importing modules
 const bodyParser = require('body-parser');
 const passport   = require('passport');

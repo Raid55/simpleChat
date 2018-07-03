@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "semi": ["warn", "always"],
+    "quotes": ["warn", "double"]
+  },
+  "extends": "@withdouble"
+}
