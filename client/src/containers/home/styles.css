@@ -1,0 +1,11 @@
+.homepage {
+    height: 100%;
+    background-color: #5BC0EB;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+        ". . ."
+        "rooms main ."
+        "rooms . .";
+}

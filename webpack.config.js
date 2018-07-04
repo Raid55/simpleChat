@@ -28,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: path.join(__dirname, '/client/src/styles'),
+        include: path.join(__dirname, '/client/src'),
         use: ["style-loader", "css-loader"]
       }
     ]

@@ -3,5 +3,6 @@
     "semi": ["warn", "always"],
     "quotes": ["warn", "double"]
   },
+  "indent": ["error", "tab"]
   "extends": "@withdouble"
 }
