@@ -13,6 +13,7 @@ class Home extends Component {
     this.state = {
       rooms: [], // rooms the user has joined in the past (only rooms that are active)
       user: {username: "pablo"}, // user info, if null that means user is not logged in
+      // user: null,
     }
   }
 
@@ -30,7 +31,7 @@ class Home extends Component {
           <>
             <RoomPannel />
             <hr />
-            {/* <RoomList /> */}
+            <RoomList />
           </>
           : 
           <Signup />

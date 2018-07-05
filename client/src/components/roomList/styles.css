@@ -1,0 +1,54 @@
+#roomList-container {
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 5px;
+}
+
+#roomList-holder {
+    margin: 0 auto;
+    width: 46%;
+    border-radius: 5px;
+    border: 3px solid #A9B4C2;
+    height: 9em;
+    overflow-y: scroll;
+}
+
+.noItemInList {
+    text-align: center;
+    padding: 0.2em 20%;
+    margin: 2px 0;
+}
+
+.listItem {
+    text-align: center;
+    height: 1.5em;
+    background-color: #7D98A1;
+    margin: 1px 0;
+    padding: 0.2em 20%;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.listItem:hover {
+    background-color: #96b6c0;
+}
+
+.listItem:active {
+    background-color: #5c6f75;
+}
+
+#roomList-holder .listItem:last-child {
+    margin-bottom: 0;
+}
+#roomList-holder .listItem:first-child {
+    margin-top: 0;
+}
+
+
+/* .first-ul {
+    border-radius: 5px 5px 0 0;
+}
+
+.last-ul {
+    border-radius: 0 0 5px 5px;
+} */

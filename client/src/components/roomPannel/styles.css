@@ -9,3 +9,17 @@
     margin: 0 auto;
     width: 35%;
 }
+
+#roomPannel-container input, button {
+    height: 25px;
+    margin: 0 auto;
+}
+
+#roomPannel-container input {
+    width: 50%;
+}
+
+#roomPannel-container hr {
+    margin-left: 0;
+    margin-right: 0;
+}

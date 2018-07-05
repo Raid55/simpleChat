@@ -13,7 +13,7 @@ class AppContainer extends Component {
         <div id="container-default">
           { this.props.children }
           <footer>
-            coded by Raid55 in React
+            coded by Raid55, built with React
           </footer>
         </div>
         <div>

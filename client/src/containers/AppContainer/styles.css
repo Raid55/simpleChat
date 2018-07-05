@@ -12,9 +12,27 @@ body {
 
 
 #container-default {
-    padding: 25px 25px 0 25px;
+    padding-top: 20px;
     border: 3px solid #A9B4C2;
     border-radius: 15px;
+}
+
+
+footer {
+    text-align: center;
+    background-color: rgb(179, 190, 212);
+    border-radius: 0 0 10px 10px;
+    height: 1.2em;
+    margin-top: 20px
+}
+
+
+
+/* global stuff */
+
+.err {
+    color: red;
+    text-align: center;
 }
 
 
@@ -22,12 +40,11 @@ button {
     text-align: center;
     border-radius: 5px;
     background-color: #7D98A1;
+    margin: 0 20px;
 }
-
 button:focus {
   outline: none;
 }
-
 button:hover {
     background-color: #96b8c4;
 }
@@ -35,6 +52,12 @@ button:active {
     background-color: #566d75;
 }
 
+
 input {
     border-radius: 5px;
+    margin: 0 20px;
 }
+input:focus {
+    outline: none;
+}
+
