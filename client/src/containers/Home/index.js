@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+
 import './styles.css';
 
-import Login from '../../components/login/login.js';
-import Chat from '../../components/chat/chat.js';
+import Signup from '../../components/signup';
 
 
 class Home extends Component {
@@ -16,9 +16,12 @@ class Home extends Component {
 
   render() {
     return (
-      <div className='homepage'>
-        {/* <Login /> */}
-        <Chat />
+      <div className="container-default" id="container-home">
+        <div id="welcome">
+          welcome to chat app!
+        </div>
+        <hr />
+        <Signup />
       </div>
     );
   }

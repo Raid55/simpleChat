@@ -1,10 +1,60 @@
 .chat {
     grid-area: main;
+    position: relative;
     border-radius: 5px;
     background-color: #5BC0EB;
     color: white;
     box-shadow: inset 0px 0px 25px -5px rgba(85, 85, 85, 0.75);
     padding: 10px;
-    border: 3px white solid;
+    border: 5px white solid;
     height: 500px;
+}
+
+.msg {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 100%;
+    display: flex;
+}
+
+.msg input {
+    flex-grow: 1;
+    outline: none;
+    border: none;
+    padding: 10px;
+}
+
+.msg button {
+    border: none;
+    background-color: FF6B6B;
+    color: black;
+}
+
+.userMsg {
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    color: black;
+    margin: 10px 0;
+    width: 45%;
+    margin-left: auto;
+}
+
+.receiveMsg {
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 10px;
+    color: black;
+    margin: 10px 0;
+    width: 45%;
+}
+
+.messages {
+    height: 93%;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

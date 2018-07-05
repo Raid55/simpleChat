@@ -1,0 +1,26 @@
+#signup-container {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-gap: 5px;
+}
+
+#signup-container #signup-info {
+    text-align: center;
+}
+
+#signup-container input, button {
+    height: 25px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+#signup-container input {
+    width: 50%;
+}
+
+#signup-container button {
+    /* padding: 3px 0 0 0; */
+    text-align: center;
+    background-color: #7D98A1;
+    width: 25%;
+}

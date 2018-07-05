@@ -11,11 +11,24 @@ client.setToken = function(token) {
 	return token
 }
 
-client.signUp = function(userInfo) {
-	return this({ method: 'post', url: '/signup', data: userInfo})
-		.then(res => {
-			return res.data.success
-		})
+client.fetchToken = function() {
+	return localStorage.getItem('token')
+}
+
+client.setDefaultHeader = function() {
+	this.defaults.headers.common.Authorization = 'Bearer ' + this.fetchToken()
+}
+
+client.signUp = function(username) {
+  return this({ method: 'post', url: '/create/user', data: {username: username} })
+    .then(res => {
+      return res.data.success;
+    })
+}
+
+client.fetchInfo = function() {
+  this.setDefaultHeader();
+  return this({ method: 'get', url: '/' })
 }
 
 

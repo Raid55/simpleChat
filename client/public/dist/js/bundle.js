@@ -105,7 +105,9 @@ var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_mo
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
-var _home = _interopRequireDefault(__webpack_require__(/*! ./containers/home */ "./client/src/containers/home/index.js"));
+var _AppContainer = _interopRequireDefault(__webpack_require__(/*! ./containers/AppContainer */ "./client/src/containers/AppContainer/index.js"));
+
+var _Home = _interopRequireDefault(__webpack_require__(/*! ./containers/Home */ "./client/src/containers/Home/index.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -143,11 +145,7 @@ function (_Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
-        exact: true,
-        path: "/",
-        component: _home.default
-      }));
+      return _react.default.createElement(_AppContainer.default, null, _react.default.createElement(_Home.default, null));
     }
   }]);
 
@@ -159,114 +157,13 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ "./client/src/components/chat/chat.js":
-/*!********************************************!*\
-  !*** ./client/src/components/chat/chat.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-__webpack_require__(/*! ./styles.css */ "./client/src/components/chat/styles.css");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Chat =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Chat, _Component);
-
-  function Chat() {
-    _classCallCheck(this, Chat);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Chat).apply(this, arguments));
-  }
-
-  _createClass(Chat, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
-        className: "chat"
-      }, "This is the chat box", _react.default.createElement("div", {
-        className: "msg"
-      }, _react.default.createElement("input", {
-        type: "text"
-      }), _react.default.createElement("button", null, "Send"))));
-    }
-  }]);
-
-  return Chat;
-}(_react.Component);
-
-var _default = Chat;
-exports.default = _default;
-
-/***/ }),
-
-/***/ "./client/src/components/chat/styles.css":
+/***/ "./client/src/components/signup/index.js":
 /*!***********************************************!*\
-  !*** ./client/src/components/chat/styles.css ***!
+  !*** ./client/src/components/signup/index.js ***!
   \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader!./styles.css */ "./node_modules/css-loader/index.js!./client/src/components/chat/styles.css");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./client/src/components/login/login.js":
-/*!**********************************************!*\
-  !*** ./client/src/components/login/login.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
@@ -277,7 +174,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-__webpack_require__(/*! ./styles.css */ "./client/src/components/login/styles.css");
+__webpack_require__(/*! ./styles.css */ "./client/src/components/signup/styles.css");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -299,47 +196,45 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var Login =
+var Signup =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Login, _Component);
+  _inherits(Signup, _Component);
 
-  function Login() {
-    _classCallCheck(this, Login);
+  function Signup() {
+    _classCallCheck(this, Signup);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Login).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(Signup).apply(this, arguments));
   }
 
-  _createClass(Login, [{
+  _createClass(Signup, [{
     key: "render",
     value: function render() {
       return _react.default.createElement("div", {
-        className: "login"
-      }, _react.default.createElement("h1", null, "Welcome to Chat! :D"), _react.default.createElement("p", null, "Enter in a name"), _react.default.createElement("input", {
-        type: "text"
-      }), _react.default.createElement("button", {
-        className: "loginBtn"
-      }, "Login"));
+        id: "signup-container"
+      }, _react.default.createElement("div", {
+        id: "signup-info"
+      }, "Pick a screen name to continue..."), _react.default.createElement("input", null), _react.default.createElement("button", null, "Log in"));
     }
   }]);
 
-  return Login;
+  return Signup;
 }(_react.Component);
 
-var _default = Login;
+var _default = Signup;
 exports.default = _default;
 
 /***/ }),
 
-/***/ "./client/src/components/login/styles.css":
-/*!************************************************!*\
-  !*** ./client/src/components/login/styles.css ***!
-  \************************************************/
+/***/ "./client/src/components/signup/styles.css":
+/*!*************************************************!*\
+  !*** ./client/src/components/signup/styles.css ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader!./styles.css */ "./node_modules/css-loader/index.js!./client/src/components/login/styles.css");
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!./styles.css */ "./node_modules/css-loader/index.js!./client/src/components/signup/styles.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -361,9 +256,106 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./client/src/containers/home/index.js":
+/***/ "./client/src/containers/AppContainer/index.js":
+/*!*****************************************************!*\
+  !*** ./client/src/containers/AppContainer/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+__webpack_require__(/*! ./styles.css */ "./client/src/containers/AppContainer/styles.css");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var AppContainer =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(AppContainer, _Component);
+
+  function AppContainer() {
+    _classCallCheck(this, AppContainer);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(AppContainer).apply(this, arguments));
+  }
+
+  _createClass(AppContainer, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("div", {
+        id: "grid-container"
+      }, _react.default.createElement("div", null), this.props.children, _react.default.createElement("div", null));
+    }
+  }]);
+
+  return AppContainer;
+}(_react.Component);
+
+var _default = AppContainer;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./client/src/containers/AppContainer/styles.css":
+/*!*******************************************************!*\
+  !*** ./client/src/containers/AppContainer/styles.css ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!./styles.css */ "./node_modules/css-loader/index.js!./client/src/containers/AppContainer/styles.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./client/src/containers/Home/index.js":
 /*!*********************************************!*\
-  !*** ./client/src/containers/home/index.js ***!
+  !*** ./client/src/containers/Home/index.js ***!
   \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -378,11 +370,9 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-__webpack_require__(/*! ./styles.css */ "./client/src/containers/home/styles.css");
+__webpack_require__(/*! ./styles.css */ "./client/src/containers/Home/styles.css");
 
-var _login = _interopRequireDefault(__webpack_require__(/*! ../../components/login/login.js */ "./client/src/components/login/login.js"));
-
-var _chat = _interopRequireDefault(__webpack_require__(/*! ../../components/chat/chat.js */ "./client/src/components/chat/chat.js"));
+var _signup = _interopRequireDefault(__webpack_require__(/*! ../../components/signup */ "./client/src/components/signup/index.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -426,8 +416,11 @@ function (_Component) {
     // }
     value: function render() {
       return _react.default.createElement("div", {
-        className: "homepage"
-      }, _react.default.createElement(_chat.default, null));
+        className: "container-default",
+        id: "container-home"
+      }, _react.default.createElement("div", {
+        id: "welcome"
+      }, "welcome to chat app!"), _react.default.createElement("hr", null), _react.default.createElement(_signup.default, null));
     }
   }]);
 
@@ -439,15 +432,15 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ "./client/src/containers/home/styles.css":
+/***/ "./client/src/containers/Home/styles.css":
 /*!***********************************************!*\
-  !*** ./client/src/containers/home/styles.css ***!
+  !*** ./client/src/containers/Home/styles.css ***!
   \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader!./styles.css */ "./node_modules/css-loader/index.js!./client/src/containers/home/styles.css");
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!./styles.css */ "./node_modules/css-loader/index.js!./client/src/containers/Home/styles.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -493,9 +486,47 @@ _reactDom.default.render(_react.default.createElement(_reactRouterDom.BrowserRou
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./client/src/components/chat/styles.css":
+/***/ "./node_modules/css-loader/index.js!./client/src/components/signup/styles.css":
+/*!***************************************************************************!*\
+  !*** ./node_modules/css-loader!./client/src/components/signup/styles.css ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "#signup-container {\n    display: grid;\n    grid-template-rows: auto auto auto;\n    grid-gap: 5px;\n}\n\n#signup-container #signup-info {\n    text-align: center;\n}\n\n#signup-container input, button {\n    height: 25px;\n    margin: 0 auto;\n    border-radius: 5px;\n}\n\n#signup-container input {\n    width: 50%;\n}\n\n#signup-container button {\n    /* padding: 3px 0 0 0; */\n    text-align: center;\n    background-color: #7D98A1;\n    width: 25%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./client/src/containers/AppContainer/styles.css":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/css-loader!./client/src/containers/AppContainer/styles.css ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {\n    background-color: #EEF1EF;\n    overflow: hidden;\n}\n\n#grid-container {\n    margin-top: 10%;\n    display: grid;\n    grid-template-columns: 25% auto 25%;\n    grid-gap: 10px;\n}\n\n\n.container-default {\n    padding: 25px;\n    border: 3px solid #A9B4C2;\n    border-radius: 15px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./client/src/containers/Home/styles.css":
 /*!*************************************************************************!*\
-  !*** ./node_modules/css-loader!./client/src/components/chat/styles.css ***!
+  !*** ./node_modules/css-loader!./client/src/containers/Home/styles.css ***!
   \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -505,45 +536,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".chat {\n    grid-area: main;\n    border-radius: 5px;\n    background-color: #5BC0EB;\n    color: white;\n    box-shadow: inset 0px 0px 25px -5px rgba(85, 85, 85, 0.75);\n    padding: 10px;\n    border: 3px white solid;\n    height: 500px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js!./client/src/components/login/styles.css":
-/*!**************************************************************************!*\
-  !*** ./node_modules/css-loader!./client/src/components/login/styles.css ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".login {\n    grid-area: main;\n    background-color: white;\n    border-radius: 5px;\n    text-align: center;\n    height: 200px;\n    box-shadow: 0px 0px 25px 2px rgba(37, 37, 37, 0.226); \n}\n\n.login input {\n    outline: none;\n    border: none;\n    border-radius: 3px;\n    background-color: rgb(248, 248, 248);\n    padding: 5px;\n    margin-right: 10px;\n    height: 20px\n}\n\n.loginBtn {\n    border: 0;\n    border-radius: 3px;\n    background-color: #FFE66D;\n    padding: 5px;\n    color: white;\n    font-size: 20px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js!./client/src/containers/home/styles.css":
-/*!*************************************************************************!*\
-  !*** ./node_modules/css-loader!./client/src/containers/home/styles.css ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".homepage {\n    height: 100%;\n    background-color: #5BC0EB;\n    display: grid;\n    grid-template-columns: auto;\n    grid-template-rows: auto;\n    grid-template-areas:\n        \". . .\"\n        \"rooms main .\"\n        \"rooms . .\";\n}\n", ""]);
+exports.push([module.i, "/* #container-home{\n    \n} */\n\n#welcome {\n    font-size: 1.7em;\n    text-align: center;\n    color: #1C2321;\n}\n\n", ""]);
 
 // exports
 

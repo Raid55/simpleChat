@@ -6,7 +6,58 @@ class Chat extends Component {
     return (
       <>
         <div className='chat'>
-          This is the chat box
+          <div className="messages">
+            <div className='userMsg'>
+              it smells like updawg here
+            </div>
+
+            <div className='receiveMsg'>
+              Whats updawg?
+            </div>
+          
+
+            <div className='userMsg'>
+              it smells like updawg here
+            </div>
+
+            <div className='receiveMsg'>
+              Whats updawg?
+            </div>
+          
+
+            <div className='userMsg'>
+              it smells like updawg here
+            </div>
+
+            <div className='receiveMsg'>
+              Whats updawg?
+            </div>
+
+            <div className='userMsg'>
+              it smells like updawg here
+            </div>
+
+            <div className='receiveMsg'>
+              Whats updawg?
+            </div>
+
+            <div className='userMsg'>
+              it smells like updawg here
+            </div>
+
+            <div className='receiveMsg'>
+              Whats updawg?
+            </div>
+
+            <div className='userMsg'>
+              it smells like updawg here
+            </div>
+
+            <div className='receiveMsg'>
+              Whats updawg?
+            </div>
+          </div>
+
           <div className='msg'>
             <input type="text"/>
             <button>Send</button>

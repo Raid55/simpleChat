@@ -8,7 +8,7 @@ html {
   }
   
   * {
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family: 'Ubuntu Mono', monospace, 'Source Sans Pro', sans-serif !important;
   }
   
   a:visited {
