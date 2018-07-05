@@ -1,9 +1,9 @@
 #vscode
 .vscode/
+.vs/
 
 #bundle.js - makes no sense uploading that big file to github
-client/public/dist/js/bundle.js
-client/public/dist/js/bundle.js.map
+client/public/dist/*
 
 #my stupid iCloud thing
 *.icloud

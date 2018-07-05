@@ -29,4 +29,6 @@ class RoomList extends Component {
   }
 }
 
+// TODO PROP TYPES
+
 export default RoomList;

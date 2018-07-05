@@ -4,7 +4,8 @@ import './styles.css';
 
 import Signup from '../../components/signup';
 import RoomList from '../../components/roomList';
-import RoomPannel from '../../components/roomPannel';
+import RoomCreate from '../../components/roomCreate';
+import RoomJoin from '../../components/roomJoin';
 
 class Home extends Component {
 
@@ -28,11 +29,13 @@ class Home extends Component {
         <hr />
         { 
           user ?
-          <>
-            <RoomPannel />
+          <div id="home-container">
+            <RoomCreate />
+            <hr />
+            <RoomJoin />
             <hr />
             <RoomList />
-          </>
+          </div>
           : 
           <Signup />
         }

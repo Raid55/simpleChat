@@ -1,6 +1,31 @@
-/* #container-home{
-    
-} */
+#home-container {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-gap: 5px;
+}
+
+#home-container hr {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#home-container button {
+    text-decoration: none;
+    cursor: pointer;
+    height: 30px;
+    margin: 0 auto;
+    width: 35%;
+}
+
+#home-container input, button {
+    height: 25px;
+    margin: 0 auto;
+}
+
+#home-container input {
+    width: 50%;
+}
+
 
 #welcome {
     font-size: 1.7em;

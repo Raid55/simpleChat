@@ -3,12 +3,14 @@ import { Route, Switch } from 'react-router-dom';
 
 import AppContainer from './containers/AppContainer';
 import Home from './containers/Home';
+import Room from './containers/Room';
 
 class App extends Component {
   render() {
     return (
       <AppContainer>
-        <Home/>
+        {/* <Home/> */}
+        <Room />
       </AppContainer>
     );
   }
