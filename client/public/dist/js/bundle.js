@@ -157,6 +157,117 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ "./client/src/components/roomList/index.js":
+/*!*************************************************!*\
+  !*** ./client/src/components/roomList/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/***/ }),
+
+/***/ "./client/src/components/roomPannel/index.js":
+/*!***************************************************!*\
+  !*** ./client/src/components/roomPannel/index.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+__webpack_require__(/*! ./styles.css */ "./client/src/components/roomPannel/styles.css");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var RoomPannel =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(RoomPannel, _Component);
+
+  function RoomPannel() {
+    _classCallCheck(this, RoomPannel);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(RoomPannel).apply(this, arguments));
+  }
+
+  _createClass(RoomPannel, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("div", {
+        id: "roomPannel-container"
+      }, _react.default.createElement("div", {
+        className: "info"
+      }, "Create a chat room, once you have a room you can invite as many people as you want by giving them your room id."), _react.default.createElement("button", null, "Create a New Room"));
+    }
+  }]);
+
+  return RoomPannel;
+}(_react.Component);
+
+var _default = RoomPannel;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./client/src/components/roomPannel/styles.css":
+/*!*****************************************************!*\
+  !*** ./client/src/components/roomPannel/styles.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!./styles.css */ "./node_modules/css-loader/index.js!./client/src/components/roomPannel/styles.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./client/src/components/signup/index.js":
 /*!***********************************************!*\
   !*** ./client/src/components/signup/index.js ***!
@@ -213,7 +324,7 @@ function (_Component) {
       return _react.default.createElement("div", {
         id: "signup-container"
       }, _react.default.createElement("div", {
-        id: "signup-info"
+        className: "info"
       }, "Pick a screen name to continue..."), _react.default.createElement("input", null), _react.default.createElement("button", null, "Log in"));
     }
   }]);
@@ -273,7 +384,11 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
 __webpack_require__(/*! ./styles.css */ "./client/src/containers/AppContainer/styles.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -311,13 +426,19 @@ function (_Component) {
     value: function render() {
       return _react.default.createElement("div", {
         id: "grid-container"
-      }, _react.default.createElement("div", null), this.props.children, _react.default.createElement("div", null));
+      }, _react.default.createElement("div", null), _react.default.createElement("div", {
+        id: "container-default"
+      }, this.props.children, _react.default.createElement("footer", null, "coded by Raid55 in React")), _react.default.createElement("div", null));
     }
   }]);
 
   return AppContainer;
-}(_react.Component);
+}(_react.Component); // This component cannot be rendered without a child
 
+
+AppContainer.propTypes = {
+  children: _propTypes.default.element.isRequired
+};
 var _default = AppContainer;
 exports.default = _default;
 
@@ -374,6 +495,10 @@ __webpack_require__(/*! ./styles.css */ "./client/src/containers/Home/styles.css
 
 var _signup = _interopRequireDefault(__webpack_require__(/*! ../../components/signup */ "./client/src/components/signup/index.js"));
 
+var _roomList = _interopRequireDefault(__webpack_require__(/*! ../../components/roomList */ "./client/src/components/roomList/index.js"));
+
+var _roomPannel = _interopRequireDefault(__webpack_require__(/*! ../../components/roomPannel */ "./client/src/components/roomPannel/index.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -401,26 +526,32 @@ var Home =
 function (_Component) {
   _inherits(Home, _Component);
 
-  function Home() {
+  function Home(props) {
+    var _this;
+
     _classCallCheck(this, Home);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Home).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Home).call(this, props));
+    _this.state = {
+      rooms: [],
+      // rooms the user has joined in the past (only rooms that are active)
+      user: {
+        username: "pablo"
+      } // user info, if null that means user is not logged in
+
+    };
+    return _this;
   }
 
   _createClass(Home, [{
     key: "render",
-    // constructor(props) {
-    //   super(props);
-    //   // this.state = {
-    //   // }
-    // }
     value: function render() {
-      return _react.default.createElement("div", {
-        className: "container-default",
-        id: "container-home"
-      }, _react.default.createElement("div", {
+      var _this$state = this.state,
+          user = _this$state.user,
+          rooms = _this$state.rooms;
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement("div", {
         id: "welcome"
-      }, "welcome to chat app!"), _react.default.createElement("hr", null), _react.default.createElement(_signup.default, null));
+      }, user ? "Welcome back ".concat(user.username) : "Welcome to the chat app"), _react.default.createElement("hr", null), user ? _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_roomPannel.default, null), _react.default.createElement("hr", null)) : _react.default.createElement(_signup.default, null));
     }
   }]);
 
@@ -486,6 +617,25 @@ _reactDom.default.render(_react.default.createElement(_reactRouterDom.BrowserRou
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./client/src/components/roomPannel/styles.css":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/css-loader!./client/src/components/roomPannel/styles.css ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "#roomPannel-container {\n    display: grid;\n    grid-template-rows: auto auto;\n    grid-gap: 5px;\n}\n\n#roomPannel-container button {\n    height: 30px;\n    margin: 0 auto;\n    width: 35%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./client/src/components/signup/styles.css":
 /*!***************************************************************************!*\
   !*** ./node_modules/css-loader!./client/src/components/signup/styles.css ***!
@@ -498,7 +648,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#signup-container {\n    display: grid;\n    grid-template-rows: auto auto auto;\n    grid-gap: 5px;\n}\n\n#signup-container #signup-info {\n    text-align: center;\n}\n\n#signup-container input, button {\n    height: 25px;\n    margin: 0 auto;\n    border-radius: 5px;\n}\n\n#signup-container input {\n    width: 50%;\n}\n\n#signup-container button {\n    /* padding: 3px 0 0 0; */\n    text-align: center;\n    background-color: #7D98A1;\n    width: 25%;\n}\n", ""]);
+exports.push([module.i, "#signup-container {\n    display: grid;\n    grid-template-rows: auto auto auto;\n    grid-gap: 5px;\n}\n\n#signup-container input, button {\n    height: 25px;\n    margin: 0 auto;\n}\n\n#signup-container input {\n    width: 50%;\n}\n\n#signup-container button {\n    width: 25%;\n}\n", ""]);
 
 // exports
 
@@ -517,7 +667,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "body {\n    background-color: #EEF1EF;\n    overflow: hidden;\n}\n\n#grid-container {\n    margin-top: 10%;\n    display: grid;\n    grid-template-columns: 25% auto 25%;\n    grid-gap: 10px;\n}\n\n\n.container-default {\n    padding: 25px;\n    border: 3px solid #A9B4C2;\n    border-radius: 15px;\n}\n", ""]);
+exports.push([module.i, "body {\n    background-color: #EEF1EF;\n    overflow: hidden;\n}\n\n#grid-container {\n    margin-top: 10%;\n    display: grid;\n    grid-template-columns: 25% auto 25%;\n    grid-gap: 10px;\n}\n\n\n#container-default {\n    padding: 25px 25px 0 25px;\n    border: 3px solid #A9B4C2;\n    border-radius: 15px;\n}\n\n\nbutton {\n    text-align: center;\n    border-radius: 5px;\n    background-color: #7D98A1;\n}\n\nbutton:focus {\n  outline: none;\n}\n\nbutton:hover {\n    background-color: #96b8c4;\n}\nbutton:active {\n    background-color: #566d75;\n}\n\ninput {\n    border-radius: 5px;\n}\n", ""]);
 
 // exports
 
@@ -536,7 +686,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "/* #container-home{\n    \n} */\n\n#welcome {\n    font-size: 1.7em;\n    text-align: center;\n    color: #1C2321;\n}\n\n", ""]);
+exports.push([module.i, "/* #container-home{\n    \n} */\n\n#welcome {\n    font-size: 1.7em;\n    text-align: center;\n    color: #1C2321;\n}\n\n.info {\n    text-align: center;\n}\n", ""]);
 
 // exports
 

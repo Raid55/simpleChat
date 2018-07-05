@@ -6,7 +6,7 @@ class Signup extends Component {
   render() {
     return (
       <div id='signup-container'>
-        <div id="signup-info">
+        <div className="info">
           Pick a screen name to continue...
         </div>
         <input></input>
@@ -15,6 +15,5 @@ class Signup extends Component {
     );
   }
 }
-
 
 export default Signup;

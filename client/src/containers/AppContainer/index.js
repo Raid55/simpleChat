@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 
@@ -9,7 +10,12 @@ class AppContainer extends Component {
       <div id="grid-container">
         <div>
         </div>
-        {this.props.children}
+        <div id="container-default">
+          { this.props.children }
+          <footer>
+            coded by Raid55 in React
+          </footer>
+        </div>
         <div>
         </div>
       </div>
@@ -18,5 +24,9 @@ class AppContainer extends Component {
 
 }
 
+// This component cannot be rendered without a child
+AppContainer.propTypes = {
+  children: PropTypes.element.isRequired
+};
 
 export default AppContainer;
