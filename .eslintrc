@@ -1,7 +1,12 @@
 {
   "rules": {
     "semi": ["warn", "always"],
-    "indent": ["warn", "tab"],
+    "indent": ["error", "tab"],
+    "no-multi-spaces": ["warn", { "exceptions": {
+      "VariableDeclarator": true,
+      "ImportDeclaration": true,
+      "Property": true
+    }}],
     "no-tabs": 0
   },
   "extends": "@withdouble"

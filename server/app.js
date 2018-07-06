@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 // This is a simple chat app, the react app and api are tied together
-// and are easily ejectable. This app is not made with HTTPS or security 
+// and are easily ejectable. This app is not made with HTTPS or security
 // in mind, therefore it will have light security (checking for correct values, sanitizing inputs)
 // this app will not rate limit...as of yet...
 
@@ -9,10 +9,10 @@
 const bodyParser = require('body-parser');
 const passport   = require('passport');
 const express    = require('express');
-const morgan     = require("morgan");
+const morgan     = require('morgan');
 const chalk      = require('chalk');
 const path       = require('path');
-const fs         = require('fs');
+// const fs         = require('fs');
 
 // init app
 const app = express();
@@ -25,14 +25,13 @@ const io = require('socket.io')(httpServer);
 
 // passing IO to response middleware
 app.use((req, res, next) => {
-  req.io = io;
-  next();
+	req.io = io;
+	next();
 });
-
 
 // Main socketIO logic
 io.use(require('./utils/socketio/auth.js'))
-.on('connection', require('./utils/socketio/events.js'));
+	.on('connection', require('./utils/socketio/events.js'));
 
 // body parser
 app.use(bodyParser.json());
@@ -61,10 +60,10 @@ app.use(morgan(' '));
 app.use(express.static(path.resolve(__dirname, '../client/public')));
 
 // importing api routes
-const api = require("./routes/api");
+const api = require('./routes/api');
 
 // Apply routes that wont serve react app
-app.use("/api", api);
+app.use('/api', api);
 
 // Serve React app on all routes except the ones above route
 // if this app had multiple clients, such as a desktop app, iPhone App, etc..
@@ -72,7 +71,7 @@ app.use("/api", api);
 // for the sake of simplicity I added it here, altho that being said it would
 // be very easy to eject the react app from the API if nessesairy...
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/public/index.html'));
-})
+	res.sendFile(path.resolve(__dirname, '../client/public/index.html'));
+});
 
-module.exports = httpServer
+module.exports = httpServer;
