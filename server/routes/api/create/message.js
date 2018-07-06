@@ -6,21 +6,21 @@ const Room = mongoose.model('Rooms');
 
 // api/create/msg/:rId
 router.post('/:rId', (req, res) => {
-  const { rId } = req.params;
+	const { rId } = req.params;
 
-  if (req.user.roomsJoined.includes(rId) && req.body.text) {
-    let msg = {
-      text: req.body.text,
-      owner: req.user._id,
-      type: 'text',
+	if (req.user.roomsJoined.find(k => k.link === rId) && req.body.text) {
+		let msg = {
+			text: req.body.text,
+			owner: req.user._id,
+			type: 'text',
     }
-    Room.update({_id: rId}, {$push: {messages: msg}})
+    Room.findOneAndUpdate({link: rId}, {$push: {messages: msg}}, {new: true})
+      .populate('messages.owner', 'username')
       .then(room => {
-        console.log(room);
         res.status(201).json({
           success: true,
         });
-        req.io.to(`room:${rId}`).emit('newMsg', msg);
+        req.io.to(`room:${rId}`).emit('newMsg', room.messages[room.messages.length - 1]);
       })
       .catch(err => {
         console.log("api/create/msg: ", err);
@@ -29,7 +29,6 @@ router.post('/:rId', (req, res) => {
           msg: "could not create msg",
         });
       })
-
   }
   else {
     res.status(401).json({

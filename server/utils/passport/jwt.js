@@ -14,8 +14,7 @@ const opts = {
 
 module.exports = new JwtStrategy(opts, (token, done) => {
   User.findById(token.sub)
-  // .populate('roomsJoined', '')
-  // .populate('roomsJoined.owner', '')
+  .populate('roomsJoined', 'isActive name link owner _id')
   .exec().then(user => {
     if (user)
       done(null, user);

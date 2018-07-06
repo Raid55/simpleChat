@@ -13,7 +13,7 @@ const messageSchema = new mongoose.Schema({
 // room Schema
 const roomSchema = new mongoose.Schema({
 	name: { type: String, required: true },
-	link: { type: String, required: true, unique: true},
+	link: { type: String, required: true, unique: true, minLength: 8, maxLength: 8},
 	messages: [messageSchema],
 	owner: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true },
 	isActive: { type: Boolean, default: true, required: false },
