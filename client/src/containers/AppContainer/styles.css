@@ -4,7 +4,8 @@ body {
 }
 
 #grid-container {
-    margin-top: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
     display: grid;
     grid-template-columns: 25% auto 25%;
     grid-gap: 10px;
@@ -15,6 +16,8 @@ body {
     padding-top: 20px;
     border: 3px solid #A9B4C2;
     border-radius: 15px;
+    /* max-height: 90%; */
+    overflow: hidden;
 }
 
 
@@ -30,6 +33,17 @@ footer {
 
 /* global stuff */
 
+.title {
+    font-size: 1.7em;
+    text-align: center;
+    color: #1C2321;
+}
+
+.info {
+    margin: 0 20px;
+    text-align: center;
+}
+
 .err {
     color: red;
     text-align: center;
@@ -41,6 +55,7 @@ button {
     border-radius: 5px;
     background-color: #7D98A1;
     margin: 0 20px;
+    border: 0;
 }
 button:focus {
   outline: none;
@@ -59,5 +74,10 @@ input {
 }
 input:focus {
     outline: none;
+}
+
+hr {
+    margin-left: 0;
+    margin-right: 0;
 }
 

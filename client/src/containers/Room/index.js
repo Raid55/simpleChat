@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import './styles.css';
 
-import Signup from '../../components/signup';
-import RoomList from '../../components/roomList';
+import ChatLegend from './chatLegend.js';
+import ChatBox from '../../components/chatBox';
 
 class Room extends Component {
 
@@ -15,7 +15,16 @@ class Room extends Component {
 
     return (
       <>
-        <h1>the next episode...</h1>
+        <div id="chat-container">
+          <div className="title">
+            disco disco disco
+          </div>
+          <hr />
+          <button id="backbtn">Back</button>
+          <ChatBox />
+          <hr />
+          <ChatLegend />
+        </div>
       </>
     );
   }

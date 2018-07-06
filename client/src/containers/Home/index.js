@@ -13,8 +13,8 @@ class Home extends Component {
     super(props);
     this.state = {
       rooms: [], // rooms the user has joined in the past (only rooms that are active)
-      user: {username: "pablo"}, // user info, if null that means user is not logged in
-      // user: null,
+      // user: {username: "pablo"}, // user info, if null that means user is not logged in
+      user: null,
     }
   }
 
@@ -23,7 +23,7 @@ class Home extends Component {
 
     return (
       <>
-        <div id="welcome">
+        <div className="title">
           { user ? `Welcome back ${user.username}` : "Welcome to the chat app" }
         </div>
         <hr />

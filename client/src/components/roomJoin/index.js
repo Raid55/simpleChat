@@ -13,6 +13,7 @@ class RoomJoin extends Component {
           Paste the 8 alphanumeric id to join that room
         </div>
         <input></input>
+        <button>Join Room</button>
         { err ? <div className="err">There was an error while joining the room</div> : null }
       </>
     );

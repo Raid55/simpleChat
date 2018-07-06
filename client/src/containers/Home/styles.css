@@ -4,12 +4,8 @@
     grid-gap: 5px;
 }
 
-#home-container hr {
-    margin-left: 0;
-    margin-right: 0;
-}
 
-#home-container button {
+#home-container form, button {
     text-decoration: none;
     cursor: pointer;
     height: 30px;
@@ -17,23 +13,12 @@
     width: 35%;
 }
 
-#home-container input, button {
+#home-container form, input, button {
     height: 25px;
     margin: 0 auto;
 }
 
-#home-container input {
+#home-container form, input {
     width: 50%;
 }
 
-
-#welcome {
-    font-size: 1.7em;
-    text-align: center;
-    color: #1C2321;
-}
-
-.info {
-    margin: 0 20px;
-    text-align: center;
-}
