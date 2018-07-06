@@ -8,8 +8,8 @@ const user = require('./user.js');
 
 // Status...
 router.get('/status', (req, res) => {
-  res.send({ status: "ok", code: 201 });
-})
+	res.send({ status: "ok", code: 201 }); /* eslint-disable-line babel/quotes */ // stings "" keys ''
+});
 
 router.use('/create', create);
 router.use('/room', passport.authenticate('jwt', { session: false }), room);

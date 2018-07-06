@@ -1,8 +1,8 @@
 {
   "rules": {
     "semi": ["warn", "always"],
-    "quotes": ["warn", "double"]
+    "indent": ["warn", "tab"],
+    "no-tabs": 0
   },
-  "indent": ["error", "tab"]
   "extends": "@withdouble"
 }

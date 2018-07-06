@@ -13,29 +13,31 @@ router.post('/:rId', (req, res) => {
 			text: req.body.text,
 			owner: req.user._id,
 			type: 'text',
-    }
-    Room.findOneAndUpdate({link: rId}, {$push: {messages: msg}}, {new: true})
-      .populate('messages.owner', 'username')
-      .then(room => {
-        res.status(201).json({
-          success: true,
-        });
-        req.io.to(`room:${rId}`).emit('newMsg', room.messages[room.messages.length - 1]);
-      })
-      .catch(err => {
-        console.log("api/create/msg: ", err);
-        res.status(400).json({
-          success: false,
-          msg: "could not create msg",
-        });
-      })
-  }
-  else {
-    res.status(401).json({
-      success: false,
-      msg: "user not part of room",
-    })
-  }
-})
+		};
+
+		Room.findOneAndUpdate({link: rId}, {$push: {messages: msg}}, {new: true})
+			.populate('messages.owner', 'username')
+			.then(room => {
+				res.status(201).json({
+					success: true,
+				});
+				req.io.to(`room:${rId}`).emit('newMsg', room.messages[room.messages.length - 1]);
+				return room;
+			})
+			.catch(err => {
+				console.log("api/create/msg: ", err); /* eslint-disable-line babel/quotes */ // stings "" keys ''
+				res.status(400).json({
+					success: false,
+					msg: "could not create msg", /* eslint-disable-line babel/quotes */ // stings "" keys ''
+				});
+			});
+	}
+	else {
+		res.status(401).json({
+			success: false,
+			msg: "user not part of room", /* eslint-disable-line babel/quotes */ // stings "" keys ''
+		});
+	}
+});
 
 module.exports = router;
