@@ -38,3 +38,12 @@
     margin: 0;
     border: 1px solid black;
 }
+
+
+#topbar {
+    background-color: rgba(216, 216, 216, 0.288);
+    padding: 3px;
+}
+#backbtn {
+
+}

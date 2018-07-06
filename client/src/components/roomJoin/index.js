@@ -4,20 +4,20 @@ import './styles.css';
 
 class RoomJoin extends Component {
 
-  render() {
-    const { err } = this.props;
+	render() {
+		const { err } = this.props;
 
-    return (
-      <>
-        <div className="info">
-          Paste the 8 alphanumeric id to join that room
-        </div>
-        <input></input>
-        <button>Join Room</button>
-        { err ? <div className="err">There was an error while joining the room</div> : null }
-      </>
-    );
-  }
+		return (
+			<>
+				<div className="info">
+					Paste the 8 alphanumeric id to join that room
+				</div>
+				<input />
+				<button>Join Room</button>
+				{ err ? <div className="err">There was an error while joining the room</div> : null }
+			</>
+		);
+	}
 }
 
 // TODO PROP TYPES
