@@ -5,19 +5,20 @@ const { PORT, MONGO_CONN } = require('./config');
 const chalk = require('chalk');
 
 // Mongoose imports
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 mongoose.set('debug', true);
 mongoose.Promise = global.Promise;
 
 // Mongoose connection
 mongoose.connect(MONGO_CONN)
-  .then(() => {
-    console.log(chalk.bold.green("Connected to MongoDB"));
-  })
-  .catch(err => {
-    console.log(chalk.bold.bgRed.white("Err, not connected to DB"));
-    throw err;
-  });
+	.then((re) => {
+		console.log(chalk.bold.green("Connected to MongoDB")); /* eslint-disable-line babel/quotes */ // stings "" keys ''
+		return re;
+	})
+	.catch(err => {
+		console.log(chalk.bold.bgRed.white("***DB CONNECTION ERROR***")); /* eslint-disable-line babel/quotes */ // stings "" keys ''
+		throw err;
+	});
 
 // importing models
 require('./server/models/User.js');
@@ -28,12 +29,21 @@ const httpServer = require('./server/app.js');
 
 httpServer.listen(PORT);
 httpServer.on('listening', () => {
-  console.log(chalk.grey.bold('\n...'));
-  console.log(chalk.blue(`Starting Chat app...`));
-  console.log(chalk.magenta.bold(`Started!!!`));
-  console.log(chalk.grey.bold('...\n'));
-})
+	console.log(chalk.grey.bold('\n...'));
+	console.log(chalk.blue(`Starting Chat app...`));
+	console.log(chalk.magenta.bold(`Started!!!`));
+	console.log(chalk.grey.bold('...\n'));
+});
 httpServer.on('error', err => {
-  console.log(chalk.red.bold(err));
+	console.log(chalk.bold.bgRed.white("***ERROR***")); /* eslint-disable-line babel/quotes */ // stings "" keys ''
+	throw err;
 });
 
+// close function
+function stop () {
+	httpServer.close();
+	mongoose.connection.close();
+}
+
+module.exports = httpServer;
+module.exports.stop = stop;

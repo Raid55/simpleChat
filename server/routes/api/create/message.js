@@ -33,7 +33,7 @@ router.post('/:rId', (req, res) => {
 			});
 	}
 	else {
-		res.status(401).json({
+		res.status(400).json({
 			success: false,
 			msg: "user not part of room", /* eslint-disable-line babel/quotes */ // stings "" keys ''
 		});
