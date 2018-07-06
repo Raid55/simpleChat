@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MSG_TYPES = ['joined', 'text', 'other'];
+const MSG_TYPES = ['joined', 'text'];
 
 // message schema
 const messageSchema = new mongoose.Schema({
@@ -13,6 +13,7 @@ const messageSchema = new mongoose.Schema({
 // room Schema
 const roomSchema = new mongoose.Schema({
 	name: { type: String, required: true },
+	link: { type: String, required: true, unique: true},
 	messages: [messageSchema],
 	owner: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true },
 	isActive: { type: Boolean, default: true, required: false },

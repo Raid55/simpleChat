@@ -13,7 +13,10 @@ const opts = {
 }
 
 module.exports = new JwtStrategy(opts, (token, done) => {
-  User.findById(token.sub).exec().then(user => {
+  User.findById(token.sub)
+  // .populate('roomsJoined', '')
+  // .populate('roomsJoined.owner', '')
+  .exec().then(user => {
     if (user)
       done(null, user);
     else

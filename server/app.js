@@ -29,6 +29,7 @@ app.use((req, res, next) => {
   next();
 });
 
+
 // Main socketIO logic
 io.use(require('./utils/socketio/auth.js'))
 .on('connection', require('./utils/socketio/events.js'));
@@ -60,7 +61,7 @@ app.use(morgan(' '));
 app.use(express.static(path.resolve(__dirname, '../client/public')));
 
 // importing api routes
-const api = require("./routes");
+const api = require("./routes/api");
 
 // Apply routes that wont serve react app
 app.use("/api", api);
