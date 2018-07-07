@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 
+import io from 'socket.io-client';
+
 import { Emojione } from 'react-emoji-render';
 import { ChatFeed, Message } from 'react-chat-ui'
 import ReactTooltip from 'react-tooltip'
 
 import stockClient from '../../utils/stockCalls.js';
+import apiClient from '../../utils/apiCalls.js';
 
 class ChatBox extends Component {
 	constructor (props) {
@@ -17,12 +20,25 @@ class ChatBox extends Component {
 			stockPrices: {},
 			stockList: [],
 			err: false,
+			socket: io('/', {
+				query: { token: apiClient.fetchToken() },
+				reconnection: true,
+				reconnectionDelay: 1000,
+				reconnectionDelayMax: 5000,
+				reconnectionAttempts: Infinity, // infinity is never a good thing but for dev its cool I guess
+			}),
 		};
+
+		this.state.socket.on('newMsg', data => {
+			this.convertAndAddMsg(data);
+		});
 
 		// Main functions
 		this.convertMsgsAndAddAll = this.convertMsgsAndAddAll.bind(this);
 		this.convertAndAddMsg = this.convertAndAddMsg.bind(this);
 		this.loadAllStocks = this.loadAllStocks.bind(this);
+		this.joinRoom = this.joinRoom.bind(this);
+		this.leaveRoom = this.leaveRoom.bind(this);
 	}
 
 	// this function parses each message and adds the correct value in an array ro be rendered
@@ -87,19 +103,30 @@ class ChatBox extends Component {
 	// adds messages to message list as recived through socket IO
 	convertAndAddMsg (msg) {
 		const { user } = this.props;
+		let chatMsg;
+
+		if (msg.type === "joined") {
+			chatMsg = {
+				message: <Emojione key={msg._id} text="Hello :wave:" />,
+				senderName: msg.text,
+			}
+		}
+		else if (msg.type === "text") {
+			chatMsg = {
+				id: msg.owner._id === user._id ? 0 : msg._id,
+				message: this.parseMsg(msg.text),
+				senderName: msg.owner.username,
+			}
+		}
 
 		this.setState({
 			messages: [
 				...this.state.messages,
-				new Message({
-					id: msg._id === user._id ? 0 : msg._id,
-					message: parseMsg(msg.text),
-					senderName: msg.owner.username,
-				})
+				new Message(chatMsg),
 			],
 			stockList: Array.from(new Set([
 				...this.state.stockList,
-				this.parseForAllStocks([msg]),
+				...this.parseForAllStocks([msg]),
 			])),
 		});
 	}
@@ -124,11 +151,26 @@ class ChatBox extends Component {
 			});
 	}
 
-	componentDidMount () {
-		this.convertMsgsAndAddAll(this.props.messages);
+	joinRoom(rId) {
+		this.state.socket.emit('join-room', rId);
+		console.log("joined room");
 	}
 
-	componentDidUpdate() {
+	leaveRoom(rId) {
+		this.state.socket.emit('leave-room', rId);
+		console.log("left room");
+	}
+
+	componentDidMount () {
+		this.convertMsgsAndAddAll(this.props.messages);
+		this.joinRoom(this.props.rId);
+	}
+
+	componentWillUnmount () {
+		this.leaveRoom(this.props.rId);
+	}
+
+	componentDidUpdate () {
 		if (this.state.stockList.length !== Object.keys(this.state.stockPrices).length && !this.state.err) {
 			console.log("here");
 			this.loadAllStocks(this.state.stockList);
@@ -161,15 +203,13 @@ class ChatBox extends Component {
 						Object.keys(stockPrices).length
 							? Object.keys(stockPrices).map(el => {
 								return (
-									<ReactTooltip key={el} id={el} type='dark' effect='solid'>
+									<ReactTooltip key={el} id={el} type="dark" effect="solid">
 										<span>{`${stockPrices[el]}$`}</span>
 									</ReactTooltip>
 								);
 							})
 							: null
 					}
-					<ReactTooltip id='test' type='dark' effect='solid'><span>11$</span></ReactTooltip>
-					<ReactTooltip id='test2' type='warning' effect='solid'><span>1231$</span></ReactTooltip>
 				</>
 			</div>
 		);
@@ -184,6 +224,7 @@ ChatBox.propTypes = {
 	messages: PropTypes.array.isRequired,
 	chatMsgValue: PropTypes.string.isRequired,
 	user: PropTypes.object.isRequired,
+	rId: PropTypes.string.isRequired,
 };
 
 export default ChatBox;

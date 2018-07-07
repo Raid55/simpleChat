@@ -110,6 +110,7 @@ class Room extends Component {
 
 	render() {
 		const { redirect, errs, room, messages, textData, user, isLoading  } = this.state;
+		const { rId } = this.props.match.params;
 
 		if (redirect) {
 			return (
@@ -133,6 +134,7 @@ class Room extends Component {
 							messages={messages}
 							chatMsgValue={textData.chatMsg}
 							user={user}
+							rId={rId}
 						/>
 					}
 					<hr />
