@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import './styles.css';
 
@@ -20,12 +21,13 @@ class Home extends Component {
 				signupUsername: "",
 				joinRoomId: "",
 			},
+			redirect: null, // if not null redirects the user to the string assigned to it
 			errs: {
 				signup: false,
 				roomCreate: false,
 				roomJoin: false,
 				roomList: false,
-			}
+			},
 		};
 
 		// Main funcs
@@ -60,7 +62,11 @@ class Home extends Component {
 	}
 
 	redirectUser (path) {
-		return null;
+		console.log(path)
+		this.setState({
+			redirect: path,
+		})
+		return path;
 	}
 
 	// fetches user data id user has a token in storage
@@ -76,13 +82,32 @@ class Home extends Component {
 	createUser (e) {
 		e.preventDefault();
 
-		apiClient.signup(this.state.textData.signupUsername)
+		apiClient.createUser(this.state.textData.signupUsername)
 			.then(this.setUser)
 			.catch(this.signupErr);
 	}
 
+	createRoom (e) {
+		e.preventDefault();
+
+		apiClient.createRoom()
+			.then(re => `/${re.roomLink}`)
+			.then(this.redirectUser)
+			.catch(err => {
+				console.log(err);
+				this.setState({
+					errs: {
+						...this.state.errs,
+						roomCreate: true,
+					},
+				})
+			})
+	}
+
 	joinRoom (e) {
-		return null;
+		e.preventDefault();
+
+		this.redirectUser(`/${this.state.textData.joinRoomId}`);
 	}
 
 	onChange (e) {
@@ -107,37 +132,51 @@ class Home extends Component {
 	// }
 
 	render () {
-		const { user, errs, textData } = this.state;
+		const { user, errs, textData, redirect } = this.state;
 
-		return (
-			<>
-				<div className="title">
-					{ user ? `Welcome back ${user.username}` : "Welcome to the chat app" }
-				</div>
-				<hr />
-				{ user
-					? <div id="home-container">
-						<RoomCreate
-							err={errs.roomCreate}
-						/>
-						<hr />
-						<RoomJoin
-							err={errs.roomJoin}
-						/>
-						<hr />
-						<RoomList
-							err={errs.roomList}
-						/>
+		if (redirect) {
+			return (
+				<Redirect push to={redirect} />
+			);
+		}
+		else {
+			return (
+				<>
+					<div className="title">
+						{ user ? `Welcome back ${user.username}` : "Welcome to the chat app" }
 					</div>
-					: <Signup
-						err={errs.signup}
-						onChange={this.onChange}
-						createUser={this.createUser}
-						userValue={textData.signupUsername} 
-					/>
-				}
-			</>
-		);
+					<hr />
+					<div id="home-container">
+						{ user
+							? <>
+								<RoomCreate
+									err={errs.roomCreate}
+									createRoom={this.createRoom}
+								/>
+								<hr />
+								<RoomJoin
+									err={errs.roomJoin}
+									joinRoom={this.joinRoom}
+									onChange={this.onChange}
+									joinRoomIdValue={textData.joinRoomId}
+								/>
+								<hr />
+								<RoomList
+									err={errs.roomList}
+									roomsJoined={user.roomsJoined}
+								/>
+							</>
+							: <Signup
+								err={errs.signup}
+								onChange={this.onChange}
+								createUser={this.createUser}
+								userValue={textData.signupUsername}
+							/>
+						}
+					</div>
+				</>
+			);
+		}
 	}
 }
 

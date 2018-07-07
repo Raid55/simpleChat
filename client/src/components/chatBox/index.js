@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 
@@ -45,25 +46,30 @@ let test = [
 class ChatBox extends Component {
 
 	render() {
+		const { err } = this.props;
+		const errMsg = "There was an error while loading the chat component...";
 
 		return (
 			<div id="chatbox">
+				{ err ? <div className="err">{errMsg}</div> : null }
 				<ChatFeed
 					messages={test}
 					isTyping={false}
 					showSenderName
 					maxHeight="20em"
 				/>
-				<div id="input-container">
-					<textarea id="inputbox" />
-					<button id="sendbtn">Send</button>
-				</div>
+				<form onSubmit={console.log}>
+					<input type="text" id="inputbox" />
+					<button type="submit" id="sendbtn">Send</button>
+				</form>
 			</div>
 		);
 
 	}
 }
 
-// TODO PROP TYPES
+ChatBox.propTypes = {
+	err: PropTypes.bool.isRequired,
+};
 
 export default ChatBox;

@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
 		.then(re => {
 			res.status(201).json({
 				success: true,
-				room: re[0],
+				roomLink: re[0].link,
 			});
 			return re[1];
 		})

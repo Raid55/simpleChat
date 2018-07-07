@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // init axios
 const client = axios.create({
-	baseURL: '/api'
+	baseURL: '/api',
 });
 
 // this function makes sure that the request went through fine
@@ -43,7 +43,7 @@ client.setDefaultHeader = function () {
 
 // signs up the user and sets the token in storage by calling setToken()
 // also returns user object
-client.signup = function (username) {
+client.createUser = function (username) {
 	return this({ method: 'post', url: '/create/user', data: {username: username} })
 		.then(checkStatus)
 		.then(re => {
@@ -59,5 +59,12 @@ client.fetchUserInfo = function () {
 		.then(checkStatus)
 		.then(re => re.data);
 };
+
+client.createRoom = function () {
+	this.setDefaultHeader();
+	return this({ method: 'post', url: '/create/room' })
+		.then(checkStatus)
+		.then(re => re.data);
+}
 
 export default client;

@@ -10,16 +10,16 @@ class Signup extends Component {
 		const maxCharsUser = 18; // max chars for user creation
 
 		return (
-			<div id="signup-container">
+			<>
 				<div className="info">
 					Pick a screen name to continue...
 				</div>
 				<form onSubmit={createUser} onChange={onChange}>
-					<input maxLength={maxCharsUser} name="signupUsername" value={userValue}/>
-					<button type="submit" name="createUserBtn">Log in</button>
+					<input maxLength={maxCharsUser} name="signupUsername" value={userValue} />
+					<button type="submit">Log in</button>
 				</form>
 				{ err ? <div className="err">{errMsg}</div> : null }
-			</div>
+			</>
 		);
 	}
 }

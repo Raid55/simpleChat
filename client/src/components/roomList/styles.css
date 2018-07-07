@@ -27,6 +27,11 @@
     padding: 0.2em 20%;
     text-decoration: none;
     cursor: pointer;
+    color: black;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .listItem:hover {
