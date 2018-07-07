@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import './styles.css';
 
 class RoomJoin extends Component {
-
-	render() {
+	render () {
 		const { err, onChange, joinRoom, joinRoomIdValue } = this.props;
 		const roomIdLength = 8; // length of a room link id
 		const errMsg = "There was an error while logging you in or fetching your user info";

@@ -18,21 +18,20 @@ mongoose.set('debug', NODE_ENV === "dev");
 mongoose.Promise = global.Promise;
 
 // Mongoose connection
-mongoose.connect(MONGO_CONN)
+mongoose.connect(MONGO_CONN);
 
 mongoose.connection
-	.on('connected', () => {  
+	.on('connected', () => {
 		console.log(chalk.bold.green("Connected to MongoDB")); /* eslint-disable-line babel/quotes */ // stings "" keys ''
 	})
-	.on('disconnected', () => {  
+	.on('disconnected', () => {
 		console.log(chalk.bold.bgRed.white("***DB DISCONNECTED***")); /* eslint-disable-line babel/quotes */ // stings "" keys ''
-		throw new Error("***DB DISCONNECTED***");
+		// throw new Error("***DB DISCONNECTED***");
 	})
-	.on('error', (err) => {  
+	.on('error', (err) => {
 		console.log(chalk.bold.bgRed.white("***DB CONNECTION ERROR***")); /* eslint-disable-line babel/quotes */ // stings "" keys ''
 		throw err;
-	}); 
-
+	});
 
 // importing models
 require('./server/models/User.js');
@@ -40,12 +39,6 @@ require('./server/models/Room.js');
 
 // Importing server
 const httpServer = require('./server/app.js');
-
-// close function
-function stop () {
-	httpServer.close();
-	mongoose.connection.close();
-}
 
 httpServer.listen(PORT);
 httpServer
@@ -61,6 +54,18 @@ httpServer
 		console.log(chalk.bold.bgRed.white("***ERROR***")); /* eslint-disable-line babel/quotes */ // stings "" keys ''
 		throw err;
 	});
+
+// close function
+function stop () {
+	httpServer.close();
+	mongoose.connection.close();
+	return true;
+}
+
+process.on('SIGINT', () => {
+	console.log("== Terminating App ==");
+	if (stop()) process.exit();
+});
 
 module.exports = httpServer;
 module.exports.stop = stop;

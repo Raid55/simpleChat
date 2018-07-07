@@ -11,7 +11,7 @@ module.exports = new PassportLocalStrategy({
 	usernameField: 'username',
 	passwordField: 'username',
 	session: false,
-	passReqToCallback: true
+	passReqToCallback: true,
 }, (req, username, password, done) => {
 	if (username.length > maxCharsUser) {
 		done(new Error("user name length over 18 chars"));
@@ -29,7 +29,6 @@ module.exports = new PassportLocalStrategy({
 				done(err);
 			}
 			else {
-				console.log(user);
 				const token = jwt.sign({ sub: user._id }, TOKEN_SECRET, {
 					expiresIn: TOKEN_EXP,
 					issuer: TOKEN_ISS,
@@ -38,5 +37,4 @@ module.exports = new PassportLocalStrategy({
 			}
 		});
 	}
-
 });

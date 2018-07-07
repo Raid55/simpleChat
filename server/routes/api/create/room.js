@@ -9,7 +9,7 @@ const Room = mongoose.model('Rooms');
 const User = mongoose.model('Users');
 
 // api/create/room
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
 	let newRoom = new Room({
 		name: generateName(),
 		link: uuidv4().slice(0, 8),

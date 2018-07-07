@@ -50,7 +50,7 @@ class Room extends Component {
 				...this.state.errs,
 				chatBox: true,
 			},
-		})
+		});
 	}
 
 	onChange (e) {
@@ -78,7 +78,12 @@ class Room extends Component {
 					});
 					return re;
 				})
-				.catch(this.setChatErr);
+				.catch(err => {
+					console.log(err);
+					this.setState({
+						redirect: '/',
+					});
+				});
 		}
 		else {
 			this.setState({
@@ -91,25 +96,27 @@ class Room extends Component {
 		e.preventDefault();
 		const { rId } = this.props.match.params;
 
-		apiClient.createMsg(rId, this.state.textData.chatMsg)
-			.then(re => {
-				this.setState({
-					textData: {
-						...this.state.textData,
-						chatMsg: "",
-					},
-				});
-				return re;
-			})
-			.catch(this.setChatErr)
+		if (this.state.textData.chatMsg !== "") {
+			apiClient.createMsg(rId, this.state.textData.chatMsg)
+				.then(re => {
+					this.setState({
+						textData: {
+							...this.state.textData,
+							chatMsg: "",
+						},
+					});
+					return re;
+				})
+				.catch(this.setChatErr);
+		}
 	}
 
 	componentDidMount () {
 		this.fetchData();
 	}
 
-	render() {
-		const { redirect, errs, room, messages, textData, user, isLoading  } = this.state;
+	render () {
+		const { redirect, errs, room, messages, textData, user, isLoading } = this.state;
 		const { rId } = this.props.match.params;
 
 		if (redirect) {
@@ -123,9 +130,12 @@ class Room extends Component {
 					<div className="title">
 						{ room ? room.name : "Loading..." }
 					</div>
+					<div className="info">
+						{ room ? `Room ID: ${room.link}` : "..." }
+					</div>
 					<hr />
 					<button onClick={this.backBtn} id="backbtn">Back</button>
-					{ isLoading 
+					{ isLoading
 						? <div className="info">Chat is Loading...</div>
 						: <ChatBox
 							err={errs.chatBox}

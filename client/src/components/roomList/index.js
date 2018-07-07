@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 class RoomList extends Component {
-	render() {
+	render () {
 		const { err, roomsJoined } = this.props;
 
 		return (

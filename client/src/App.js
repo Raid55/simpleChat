@@ -6,7 +6,7 @@ import Home         from './containers/Home';
 import Room         from './containers/Room';
 
 class App extends Component {
-	render() {
+	render () {
 		return (
 			<AppContainer>
 				<Switch>
@@ -18,5 +18,4 @@ class App extends Component {
 	}
 }
 
-
-export default App
+export default App;

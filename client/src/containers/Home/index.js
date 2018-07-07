@@ -35,7 +35,7 @@ class Home extends Component {
 		this.createUser = this.createUser.bind(this);
 		this.joinRoom = this.joinRoom.bind(this);
 		this.createRoom = this.createRoom.bind(this);
-		
+
 		// Helper funcs - to avoid repeating myself
 		this.onChange = this.onChange.bind(this);
 		this.setUser = this.setUser.bind(this);
@@ -62,10 +62,9 @@ class Home extends Component {
 	}
 
 	redirectUser (path) {
-		console.log(path)
 		this.setState({
 			redirect: path,
-		})
+		});
 		return path;
 	}
 
@@ -100,8 +99,8 @@ class Home extends Component {
 						...this.state.errs,
 						roomCreate: true,
 					},
-				})
-			})
+				});
+			});
 	}
 
 	joinRoom (e) {
