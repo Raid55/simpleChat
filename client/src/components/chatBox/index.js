@@ -113,7 +113,7 @@ class ChatBox extends Component {
 		}
 		else if (msg.type === "text") {
 			chatMsg = {
-				id: msg.owner._id === user._id ? 0 : msg._id,
+				id: msg.owner._id === user._id ? 0 : msg.owner._id,
 				message: this.parseMsg(msg.text),
 				senderName: msg.owner.username,
 			}
@@ -175,6 +175,7 @@ class ChatBox extends Component {
 			console.log("here");
 			this.loadAllStocks(this.state.stockList);
 		}
+		ReactTooltip.rebuild();
 	}
 
 	render() {

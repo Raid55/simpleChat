@@ -8,7 +8,6 @@ module.exports = (socket, next) => {
 
 	if (socket.handshake.query && socket.handshake.query.token) {
 		jwt.verify(socket.handshake.query.token, TOKEN_SECRET, {issuer: TOKEN_ISS}, (err, token) => {
-			console.log("what now: ", err, token)
 			if (err) {
 				next(manErr);
 			}
