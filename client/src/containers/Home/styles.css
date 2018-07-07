@@ -1,0 +1,29 @@
+#home-container {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-gap: 5px;
+}
+
+#home-container form {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-gap: 5px;
+}
+
+#home-container form button {
+    text-decoration: none;
+    cursor: pointer;
+    height: 30px;
+    margin: 0 auto;
+    width: 35%;
+}
+
+#home-container form input, button {
+    height: 25px;
+    margin: 0 auto;
+}
+
+#home-container form input {
+    width: 50%;
+}
+
