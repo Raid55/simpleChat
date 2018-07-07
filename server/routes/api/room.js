@@ -16,6 +16,10 @@ router.get('/:rId', (req, res) => {
 				res.status(201).json({
 					success: true,
 					room: room,
+					user: {
+						username: req.user.username,
+						_id: req.user._id,
+					},
 				});
 				return room;
 			})
@@ -44,6 +48,10 @@ router.get('/:rId', (req, res) => {
 				res.status(201).json({
 					success: true,
 					room: re[0],
+					user: {
+						username: req.user.username,
+						_id: req.user._id,
+					},
 				});
 				return re[1];
 			})

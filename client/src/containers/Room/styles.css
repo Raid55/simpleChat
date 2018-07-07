@@ -22,4 +22,14 @@
     border: 2px solid #dddddd;
     margin: 0;
 }
+#emoji-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 5px;
+}
+
+.example {
+    font-weight: bold;
+    color: rgb(182, 21, 37);
+}
 

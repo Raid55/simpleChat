@@ -41,23 +41,26 @@ require('./server/models/Room.js');
 // Importing server
 const httpServer = require('./server/app.js');
 
-httpServer.listen(PORT);
-httpServer.on('listening', () => {
-	console.log(chalk.grey.bold('\n...'));
-	console.log(chalk.blue(`Starting Chat app...`));
-	console.log(chalk.magenta.bold(`Started!!!`));
-	console.log(chalk.grey.bold('...\n'));
-});
-httpServer.on('error', err => {
-	console.log(chalk.bold.bgRed.white("***ERROR***")); /* eslint-disable-line babel/quotes */ // stings "" keys ''
-	throw err;
-});
-
 // close function
 function stop () {
 	httpServer.close();
 	mongoose.connection.close();
 }
+
+httpServer.listen(PORT);
+httpServer
+	.on('listening', () => {
+		if (NODE_ENV !== "test") {
+			console.log(chalk.grey.bold('\n...'));
+			console.log(chalk.blue(`Starting Chat app...`));
+			console.log(chalk.magenta.bold(`Started!!!`));
+			console.log(chalk.grey.bold('...\n'));
+		}
+	})
+	.on('error', err => {
+		console.log(chalk.bold.bgRed.white("***ERROR***")); /* eslint-disable-line babel/quotes */ // stings "" keys ''
+		throw err;
+	});
 
 module.exports = httpServer;
 module.exports.stop = stop;

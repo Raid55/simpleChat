@@ -7,10 +7,11 @@ const Room = mongoose.model('Rooms');
 // api/create/msg/:rId
 router.post('/:rId', (req, res) => {
 	const { rId } = req.params;
+	const { text } = req.body;
 
-	if (req.user.roomsJoined.find(k => k.link === rId) && req.body.text) {
+	if (req.user.roomsJoined.find(k => k.link === rId) && (text && typeof text === "string")) {
 		let msg = {
-			text: req.body.text,
+			text: text,
 			owner: req.user._id,
 			type: 'text',
 		};
@@ -26,7 +27,7 @@ router.post('/:rId', (req, res) => {
 			})
 			.catch(err => {
 				console.log("api/create/msg: ", err); /* eslint-disable-line babel/quotes */ // stings "" keys ''
-				res.status(400).json({
+				res.status(401).json({
 					success: false,
 					msg: "could not create msg", /* eslint-disable-line babel/quotes */ // stings "" keys ''
 				});

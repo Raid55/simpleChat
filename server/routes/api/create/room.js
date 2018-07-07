@@ -14,6 +14,11 @@ router.post('/', (req, res) => {
 		name: generateName(),
 		link: uuidv4().slice(0, 8),
 		owner: req.user._id,
+		messages: [{
+			text: `${req.user.username} has joined the room...`,
+			owner: req.user._id,
+			type: 'joined',
+		}],
 	});
 
 	newRoom.save()

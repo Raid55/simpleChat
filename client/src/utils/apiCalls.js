@@ -25,6 +25,8 @@ const checkStatus = function (re) {
 	}
 };
 
+/* utilities */
+
 // sets token in local storage
 client.setToken = function (token) {
 	localStorage.setItem('token', token);
@@ -41,6 +43,8 @@ client.setDefaultHeader = function () {
 	this.defaults.headers.common.Authorization = 'Bearer ' + this.fetchToken();
 };
 
+/* creating data */
+
 // signs up the user and sets the token in storage by calling setToken()
 // also returns user object
 client.createUser = function (username) {
@@ -52,6 +56,23 @@ client.createUser = function (username) {
 		});
 };
 
+// creates a room that users can join and chat in
+client.createRoom = function () {
+	this.setDefaultHeader();
+	return this({ method: 'post', url: '/create/room' })
+		.then(checkStatus)
+		.then(re => re.data);
+}
+
+client.createMsg = function (rId, msg) {
+	this.setDefaultHeader();
+	return this({ method: 'post', url: `/create/msg/${rId}`, data: {text: msg} })
+		.then(checkStatus)
+		.then(re => re.data);
+}
+
+/* fetching data */
+
 // fetches user info from token in storage
 client.fetchUserInfo = function () {
 	this.setDefaultHeader();
@@ -60,11 +81,12 @@ client.fetchUserInfo = function () {
 		.then(re => re.data);
 };
 
-client.createRoom = function () {
+// fetches room info and messages
+client.fetchRoomInfo = function (rId) {
 	this.setDefaultHeader();
-	return this({ method: 'post', url: '/create/room' })
+	return this({ method: 'get', url: `/room/${rId}` })
 		.then(checkStatus)
 		.then(re => re.data);
-}
+};
 
 export default client;
