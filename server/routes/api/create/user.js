@@ -15,7 +15,10 @@ router.post('/', (req, res, next) => {
 			return res.status(201).json({
 				success: true,
 				token: token,
-				user: userData,
+				user: {
+					username: userData.username,
+					roomsJoined: userData.roomsJoined,
+				},
 			});
 		}
 	})(req, res, next);

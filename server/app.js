@@ -5,10 +5,14 @@
 // in mind, therefore it will have light security (checking for correct values, sanitizing inputs)
 // this app will not rate limit...as of yet...
 
+// env vars
+const { NODE_ENV } = require('../config');
+
 // importing modules
 const bodyParser = require('body-parser');
 const passport   = require('passport');
 const express    = require('express');
+// const logger     = require('winston');
 const morgan     = require('morgan');
 const chalk      = require('chalk');
 const path       = require('path');
@@ -47,13 +51,17 @@ passport.use('signup', signupStrategy);
 passport.use('jwt', jwtStrategy);
 
 // Morgan logger //
-app.use(morgan(chalk.grey('........................................')));
-app.use(morgan(chalk.blue(':user-agent')));
-app.use(morgan(chalk.red.bold('[:date[clf]]')));
-app.use(morgan(chalk.yellow.bold('":method | :url | HTTP/:http-version"')));
-app.use(morgan(chalk.cyan(':status | :res[content-length] | :response-time ms')));
-app.use(morgan(chalk.grey('........................................')));
-app.use(morgan(' '));
+// let logStream = { "stream": logger.stream };
+let logStream = {};
+if (NODE_ENV !== "test") {
+	app.use(morgan(chalk.grey('........................................'), logStream));
+	app.use(morgan(chalk.blue(':user-agent'), logStream));
+	app.use(morgan(chalk.red.bold('[:date[clf]]'), logStream));
+	app.use(morgan(chalk.yellow.bold('":method | :url | HTTP/:http-version"'), logStream));
+	app.use(morgan(chalk.cyan(':status | :res[content-length] | :response-time ms'), logStream));
+	app.use(morgan(chalk.grey('........................................'), logStream));
+	app.use(morgan(' '));
+}
 // end of logger info //
 
 // Serve bundlejs and static files

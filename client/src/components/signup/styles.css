@@ -1,18 +1,24 @@
 #signup-container {
     display: grid;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto;
     grid-gap: 5px;
 }
 
-#signup-container input, button {
+#signup-container form {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-gap: 5px;
+}
+
+#signup-container form input, button {
     height: 25px;
     margin: 0 auto;
 }
 
-#signup-container input {
+#signup-container form form input {
     width: 50%;
 }
 
-#signup-container button {
+#signup-container form button {
     width: 25%;
 }

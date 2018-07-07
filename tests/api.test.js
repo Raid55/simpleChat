@@ -2,10 +2,13 @@
 
 const request = require('supertest');
 
-describe('Loading all assets and checking all basic endpoints', function () {
+// FILLER
+describe('Loading all assets and checking all basic endpoints', () => {
 	let server;
 
 	before(() => {
+		process.env.NODE_ENV = "test";
+		delete require.cache[require.resolve('../index.js')];
 		server = require('../index.js');
 	});
 
@@ -64,3 +67,35 @@ describe('Loading all assets and checking all basic endpoints', function () {
 			.expect(200, done);
 	});
 });
+
+// // FILLER
+// describe('testing', () => {
+// 	let server;
+
+// 	before(() => {
+// 		process.env.NODE_ENV = "test";
+// 		delete require.cache[require.resolve('../index.js')];
+// 		server = require('../index.js');
+// 	});
+
+// 	after(done => {
+// 		require('../index.js').stop();
+// 		done();
+// 	});
+
+// 	// First testing for status of api
+// 	it('status api - api/status', done => {
+// 		request(server)
+// 			.get('/api/status')
+// 			.expect('Content-Type', 'application/json; charset=utf-8')
+// 			.expect(200, done);
+// 	});
+
+// 	// testing for a random api route
+// 	it('api 404', done => {
+// 		request(server)
+// 			.get('/api/foobar')
+// 			.expect('Content-Type', 'application/json; charset=utf-8')
+// 			.expect(404, done);
+// 	});
+// });

@@ -49,6 +49,9 @@ footer {
     text-align: center;
 }
 
+form {
+    display: default;
+}
 
 button {
     text-align: center;
