@@ -7,43 +7,7 @@ import { Emojione } from 'react-emoji-render';
 import { ChatFeed, Message } from 'react-chat-ui'
 import ReactTooltip from 'react-tooltip'
 
-let test = [
-	new Message({
-		id: 10,
-		message: "Yo bro",
-		senderName: "dude",
-	}),
-	new Message({ id: 10, message: "hows it going?"}),
-	new Message({
-		id: 10,
-		message: ["check this stock out ", <><span data-tip data-for='test' className="stockTag">$APLL</span></>, " its pretty good"],
-		senderName: "dude",
-	}),
-	new Message({
-		senderName: "userWhatever has joined the room",
-	}),
-	new Message({ id: 0, message: "nice"}),
-	new Message({
-		id: 10,
-		message: ["check this stock out ", <><span data-tip data-for='test2' style={{backgroundColor: "yellow"}}>$APLL</span></>, " its pretty good"],
-		senderName: "dude",
-	}),
-	new Message({ id: 0, message: "i think im gonna buy some..."}),
-	new Message({ id: 0, message: "not too much..."}),
-	new Message({
-		id: 10,
-		message: "you scared?",
-		senderName: "dude",
-	}),
-	new Message({ id: 0, message: "no i just dont like gambling that much"}),
-	new Message({ id: "5b3d26f68f45e5a46e181b33", message: "plus better be safe than sorry", senderName: "was"}),
-	new Message({
-		id: "5b3d26f68f45e5a46e181b33",
-		message: [ "hey wana hang out this weekend", <Emojione text=":+1:" />, "bro" ],
-		senderName: "was",
-	}),
-	new Message({ id: 0, message: "sure why not"}),
-]
+import stockClient from '../../utils/stockCalls.js';
 
 class ChatBox extends Component {
 	constructor (props) {
@@ -52,39 +16,50 @@ class ChatBox extends Component {
 			messages: [],
 			stockPrices: {},
 			stockList: [],
+			err: false,
 		};
 
 		// Main functions
 		this.convertMsgsAndAddAll = this.convertMsgsAndAddAll.bind(this);
 		this.convertAndAddMsg = this.convertAndAddMsg.bind(this);
+		this.loadAllStocks = this.loadAllStocks.bind(this);
 	}
 
+	// this function parses each message and adds the correct value in an array ro be rendered
+	// if its stock add span for toll-tip
+	// if its emoji add emoji component with text inside of it
+	// else just return the regular text
 	parseMsg (msg) {
 		return msg.split(/(\s+)/).map((el, idx) => {
 			if (el.match(/:\S+:/g)) {
 				return <Emojione key={idx} text={el} />;
 			}
 			else if (el.match(/\$[a-zA-Z]+/g)) {
-				return <span key={idx} data-tip data-for={el.substr(1).toLowerCase()} className="stockTag">{el}</span>
+				return <span key={idx} data-tip data-for={el.substr(1).toUpperCase()} className="stockTag">{el}</span>
 			}
 			else {
 				return el;
 			}
 		});
 	}
+	// This function looks complicated so im gonna break it down
+	// First we wrap everything around Array.from(new Set()) to
+	// get all unique values, then we use [].concat(...), this is to merge
+	// all the arrays that will be returned from the maps function, ... is spread
+	// operator, then we use regexp to find anything that looks like a stock ticker
+	// and voila, now we know all the tickers that need to be loaded.
 	parseForAllStocks (msgs) {
 		return Array.from(new Set(
-			msgs.map(el => el.text).map(el => {
-				return el.split(/(\s+)/).map((el, idx) => {
-					if (el.match(/\$[a-zA-Z]+/g)) return el.substr(1).toLowerCase();
+			[].concat(...msgs.map(el => el.text).map(el => {
+				return el.split(/(\s+)/).map(el => {
+					if (el.match(/\$[a-zA-Z]+/g)) return el.substr(1).toUpperCase(); else return null;
 				});
-			}),
+			})).filter(v => v),
 		));
 	}
-	// loadAllStocks () {
 
-	// }
-
+	// converts from mongodb messages to react-msg-ui messages
+	// this runs onetime for all messages initialy
 	convertMsgsAndAddAll (msgs) {
 		const { user } = this.props;
 
@@ -108,6 +83,8 @@ class ChatBox extends Component {
 		});
 	}
 
+	// converts from mongodb messages to react-msg-ui messages
+	// adds messages to message list as recived through socket IO
 	convertAndAddMsg (msg) {
 		const { user } = this.props;
 
@@ -127,26 +104,48 @@ class ChatBox extends Component {
 		});
 	}
 
+	// loads all stock from stock list
+	loadAllStocks () {
+		stockClient.getStocks(this.state.stockList)
+			.then(re => {
+				this.setState({
+					stockPrices: Object.keys(re).reduce((accu, el) => {
+						accu[el] = re[el].quote.latestPrice;
+						return accu;
+					}, {}),
+				});
+				return re;
+			})
+			.catch(err => {
+				console.log("error loading stocks: ", err);
+				this.setState({
+					err: true,
+				})
+			});
+	}
+
 	componentDidMount () {
 		this.convertMsgsAndAddAll(this.props.messages);
 	}
 
-	// componentDidUpdate() {
-	// 	if (this.state.messages.length !== this.props.messages.length) {
-	// 		console.log("here")
-	// 		this.convertMsgsAndAddAll(this.props.messages);
-	// 	}
-	// }
+	componentDidUpdate() {
+		if (this.state.stockList.length !== Object.keys(this.state.stockPrices).length && !this.state.err) {
+			console.log("here");
+			this.loadAllStocks(this.state.stockList);
+		}
+	}
 
 	render() {
-		const { messages, stockPrices, stockList } = this.state;
+		const { messages, stockPrices } = this.state;
 		const { err, onChange, sendMsg, chatMsgValue } = this.props;
 		const errMsg = "There was an error while loading the chat or sending a message";
+		const stockErrMsg = "There was an error while loading stock tickers";
 		const maxChatboxHeight = "20em"; // the max size of the chat box
 
 		return (
 			<div id="chatbox">
 				{ err ? <div className="err">{errMsg}</div> : null }
+				{ this.state.err ? <div className="err">{stockErrMsg}</div> : null }
 				<ChatFeed
 					messages={messages}
 					isTyping={false}
@@ -158,6 +157,17 @@ class ChatBox extends Component {
 					<button type="submit" id="sendbtn">Send</button>
 				</form>
 				<>
+					{
+						Object.keys(stockPrices).length
+							? Object.keys(stockPrices).map(el => {
+								return (
+									<ReactTooltip key={el} id={el} type='dark' effect='solid'>
+										<span>{`${stockPrices[el]}$`}</span>
+									</ReactTooltip>
+								);
+							})
+							: null
+					}
 					<ReactTooltip id='test' type='dark' effect='solid'><span>11$</span></ReactTooltip>
 					<ReactTooltip id='test2' type='warning' effect='solid'><span>1231$</span></ReactTooltip>
 				</>
