@@ -59,17 +59,17 @@ client.createUser = function (username) {
 // creates a room that users can join and chat in
 client.createRoom = function () {
 	this.setDefaultHeader();
-	return this({ method: 'post', url: '/create/room' })
+	return this({ method: 'get', url: '/create/room' })
 		.then(checkStatus)
 		.then(re => re.data);
-}
+};
 
 client.createMsg = function (rId, msg) {
 	this.setDefaultHeader();
 	return this({ method: 'post', url: `/create/msg/${rId}`, data: {text: msg} })
 		.then(checkStatus)
 		.then(re => re.data);
-}
+};
 
 /* fetching data */
 

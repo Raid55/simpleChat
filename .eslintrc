@@ -5,7 +5,7 @@
     "react/jsx-indent": ["error", "tab"],
     "react/jsx-indent-props": ["error", "tab"],
     "jsx-quotes": ["warn", "prefer-double"],
-    "babel/quotes": ["warn", "prefer-double"],
+    "babel/quotes": 0,
     "no-multi-spaces": ["warn", { "exceptions": {
       "VariableDeclarator": true,
       "ImportDeclaration": true,

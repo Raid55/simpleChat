@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import './styles.css';
 
 class RoomCreate extends Component {
-
-	render() {
+	render () {
 		const { err, createRoom } = this.props;
 		const errMsg = "There was an error while trying to create a room";
 

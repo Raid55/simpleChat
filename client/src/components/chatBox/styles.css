@@ -39,6 +39,15 @@
     border-left: 0;
 }
 
+.msgLink:visited {
+    color: blue !important;
+}
+.msgLink:active {
+    color: red !important;
+}
+.msgLink:hover{
+    color: rgb(41, 104, 231) !important;
+}
 
 #topbar {
     background-color: rgba(216, 216, 216, 0.288);

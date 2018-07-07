@@ -1,13 +1,11 @@
 import React from 'react';
 
-import { Emojione } from 'react-emoji-render';
-
 export default () => {
 	return (
 		<>
 			<div className="info">
 				You can add stock symbols to your chat messages by simply adding a "$" followed by a ticker symbol.<br />
-				<span className="example">"Buy $AAPL stock, the new iPhone 20 will tank $KRW"</span>
+				<span className="example">"Buy $AAPL stock, the new iPhone 20 will tank $KRX"</span>
 			</div>
 			<hr />
 			<div className="info">
@@ -16,5 +14,5 @@ export default () => {
 				For a full list of emojis can be found here: <a target="_blank" href="https://www.emojione.com/emoji/v3">https://www.emojione.com/emoji/v3</a>
 			</div>
 		</>
-	)
-}
+	);
+};

@@ -6,8 +6,8 @@ import './styles.css';
 import io from 'socket.io-client';
 
 import { Emojione } from 'react-emoji-render';
-import { ChatFeed, Message } from 'react-chat-ui'
-import ReactTooltip from 'react-tooltip'
+import { ChatFeed, Message } from 'react-chat-ui';
+import ReactTooltip from 'react-tooltip';
 
 import stockClient from '../../utils/stockCalls.js';
 import apiClient from '../../utils/apiCalls.js';
@@ -51,7 +51,10 @@ class ChatBox extends Component {
 				return <Emojione key={idx} text={el} />;
 			}
 			else if (el.match(/\$[a-zA-Z]+/g)) {
-				return <span key={idx} data-tip data-for={el.substr(1).toUpperCase()} className="stockTag">{el}</span>
+				return <span key={idx} data-tip data-for={el.substr(1).toUpperCase()} className="stockTag">{el}</span>;
+			}
+			else if(el.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/)) {
+				return <a key={idx} target="_blank" className="msgLink" href={el}>{el}</a>;
 			}
 			else {
 				return el;
@@ -83,6 +86,7 @@ class ChatBox extends Component {
 			messages: msgs.map(el => {
 				if (el.type === "joined") {
 					return new Message({
+						id: el.owner._id === user._id ? 0 : el.owner._id,
 						message: <Emojione key={el._id} text="Hello :wave:" />,
 						senderName: el.text,
 					});
@@ -107,16 +111,17 @@ class ChatBox extends Component {
 
 		if (msg.type === "joined") {
 			chatMsg = {
+				id: msg.owner._id === user._id ? 0 : msg.owner._id,
 				message: <Emojione key={msg._id} text="Hello :wave:" />,
 				senderName: msg.text,
-			}
+			};
 		}
 		else if (msg.type === "text") {
 			chatMsg = {
 				id: msg.owner._id === user._id ? 0 : msg.owner._id,
 				message: this.parseMsg(msg.text),
 				senderName: msg.owner.username,
-			}
+			};
 		}
 
 		this.setState({
@@ -135,28 +140,36 @@ class ChatBox extends Component {
 	loadAllStocks () {
 		stockClient.getStocks(this.state.stockList)
 			.then(re => {
+				return this.state.stockList.reduce((accu, el) => {
+					if (!accu[el]) accu[el] = {quote: {latestPrice: "invalid"}};
+					return accu;
+				}, re)
+			})
+			.then(ree => {
+				console.log(ree);
 				this.setState({
-					stockPrices: Object.keys(re).reduce((accu, el) => {
-						accu[el] = re[el].quote.latestPrice;
+					stockPrices: Object.keys(ree).reduce((accu, el) => {
+						console.log(accu[el])
+						accu[el] = ree[el].quote.latestPrice;
 						return accu;
 					}, {}),
 				});
-				return re;
+				return ree;
 			})
 			.catch(err => {
 				console.log("error loading stocks: ", err);
 				this.setState({
 					err: true,
-				})
+				});
 			});
 	}
 
-	joinRoom(rId) {
+	joinRoom (rId) {
 		this.state.socket.emit('join-room', rId);
 		console.log("joined room");
 	}
 
-	leaveRoom(rId) {
+	leaveRoom (rId) {
 		this.state.socket.emit('leave-room', rId);
 		console.log("left room");
 	}
@@ -178,7 +191,7 @@ class ChatBox extends Component {
 		ReactTooltip.rebuild();
 	}
 
-	render() {
+	render () {
 		const { messages, stockPrices } = this.state;
 		const { err, onChange, sendMsg, chatMsgValue } = this.props;
 		const errMsg = "There was an error while loading the chat or sending a message";
@@ -194,9 +207,14 @@ class ChatBox extends Component {
 					isTyping={false}
 					showSenderName
 					maxHeight={maxChatboxHeight}
+					bubbleStyles={{
+						text: {
+							wordWrap: "break-word",
+						},
+					}}
 				/>
 				<form onChange={onChange} onSubmit={sendMsg}>
-					<input type="text" name="chatMsg" value={chatMsgValue} id="inputbox" />
+					<input autoComplete="off" type="text" name="chatMsg" value={chatMsgValue} id="inputbox" />
 					<button type="submit" id="sendbtn">Send</button>
 				</form>
 				<>
@@ -214,7 +232,6 @@ class ChatBox extends Component {
 				</>
 			</div>
 		);
-
 	}
 }
 

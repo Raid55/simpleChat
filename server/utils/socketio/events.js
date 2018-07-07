@@ -12,4 +12,4 @@ module.exports = (socket) => {
 	// socket.on('typing', whTping =>{
 
 	// })
-}
+};

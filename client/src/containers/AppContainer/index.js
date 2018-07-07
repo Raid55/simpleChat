@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 
+import { Emojione } from 'react-emoji-render';
+
 class AppContainer extends Component {
 	render () {
 		return (
@@ -11,7 +13,7 @@ class AppContainer extends Component {
 				<div id="container-default">
 					{ this.props.children }
 					<footer>
-						coded by Raid55, built with React
+						<Emojione text=":computer: by Raid55, built with React" />
 					</footer>
 				</div>
 				<div />
