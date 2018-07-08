@@ -28,9 +28,9 @@ KEY=Value
 
 now its time to start up the app:
 - `npm run dev`:
- - running dev will essentially run webpack in watch mode and at the same time run the backend express API, if you are changing things often you might want to use that option.
+  - running dev will essentially run webpack in watch mode and at the same time run the backend express API, if you are changing things often you might want to use that option.
 - `npm run build` and then `npm run start`:
- - this will build the react app and start the server separately, this is the best way if you want to just run the website and test it out.
+  - this will build the react app and start the server separately, this is the best way if you want to just run the website and test it out.
 
 
 ### Limitations
