@@ -52,10 +52,10 @@ To run the API tests type: `npm run test`
 
 ### Bugs
 - CSS
- - I'm not that advanced when it comes to CSS so I kind of winged it, no responsivness and it is made to work on my 15'inch MacBook running google chrome.
-- The tests are restarting the server multiple times, they still work but it's annoying.
+  - I'm not that advanced when it comes to CSS so I kind of winged it, no responsivness and it is made to work on my 15'inch MacBook running google chrome.
+- ~~The tests are restarting the server multiple times, they still work but it's annoying.~~ I just put all the tests in one describe for now.
 - SocketIO
- - socket io, for some reason, keeps reconnecting after 3 - 8 minutes of idle time and from there it keeps doing it even if there is no page refresh, the reconnect also deletes all context between server and client. 
+  - socket io, for some reason, keeps reconnecting after 3 - 8 minutes of idle time and from there it keeps doing it even if there is no page refresh, the reconnect also deletes all context between server and client. 
 - ~~EARINUSE:3000~~
   - ~~I think this problem has to do with my computer but for some reason after killing the server something still stays active on port 3000, I added `npm run pk` to kill the process on port 3000~~, I had to handle `SIGNINT` because for some reason my computer left the server running if I just ctrl-c'd it.
 
