@@ -35,17 +35,17 @@ now its time to start up the app:
 
 ### Limitations
 - Not for Production
- - This app is not ready for production, there are a lot of things that aren't in place and it will become evident as you read through the limitations.
+  - This app is not ready for production, there are a lot of things that aren't in place and it will become evident as you read through the limitations.
 - Made only for 1 CPU
- - You cannot cluster this app in its current state, socket IO won't work unless you provide some sort of proxy for it(redis). You would also have to use PM2 or rewrite some of the code to enable cluster mode.
+  - You cannot cluster this app in its current state, socket IO won't work unless you provide some sort of proxy for it(redis). You would also have to use PM2 or rewrite some of the code to enable cluster mode.
 - No React tests
- - While I tried my best to write modular code and define every PropType. I am not very experienced writing front-end tests so I focused instead writing the app well and keeping it organized.
+  - While I tried my best to write modular code and define every PropType. I am not very experienced writing front-end tests so I focused instead writing the app well and keeping it organized.
 - No logger
   - I started by console logging everything with text tags but I felt like that was sloppy, I did some research into implementing a good logger that would both work for the console but also log to a file, WinstonJS came up and I started looking into it. I already tried to configure it but I couldn't get it to work the way I wanted to so I have to rethink my approach.
 - No rate limiting
- - There is no rate limiting, meaning a user can create as many rooms as he wants and make as many requests to the server as he pleases. Not very good but this is not meant for prod.
+  - There is no rate limiting, meaning a user can create as many rooms as he wants and make as many requests to the server as he pleases. Not very good but this is not meant for prod.
 - Security
- - Since the app is password free the whole app is technically available to everyone, anyone can join your room if they have the 8 alphanumeric randomly generated id they can join the channel and see the whole message history.
+  - Since the app is password free the whole app is technically available to everyone, anyone can join your room if they have the 8 alphanumeric randomly generated id they can join the channel and see the whole message history.
 
 ### Testing
 To run the API tests type: `npm run test`
