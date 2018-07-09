@@ -14,7 +14,23 @@ spy(ChatBox.prototype, 'componentDidMount');
 
 describe('test', () => {
 	const defaultPropsChatbox = {
-		// putting default props here
+		err: false,
+		onChange: console.log,
+		sendMsg: console.log,
+		messages: [
+			{
+				"_id": "5b40eac2433afe0269d585da",
+				"text": "testUser has joined the room...",
+				"owner": {
+					"_id": "5b40eab3433afe0269d585d4",
+					"username": "testUser",
+				},
+				"type": "joined",
+			},
+		],
+		chatMsgValue: "",
+		user: {},
+		rId: "12345678",
 	};
 
 	it('calls componentDidMount', () => {

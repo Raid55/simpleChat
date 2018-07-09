@@ -11,7 +11,7 @@
     "devClient": "webpack --mode development --watch",
     "dev": "concurrently \"npm run start\" \"npm run devClient\"",
     "tests": "npm run test-server && npm run test-client",
-    "test-client": " mocha --require @babel/register --require ignore-styles -c -R spec tests/client.test.js",
+    "test-client": " mocha --require @babel/register --require ignore-styles --require tests/setup.js -c -R spec tests/client.test.js",
     "test-server": "mocha -c -R spec tests/api.test.js",
     "pk": "kill $(lsof -t -i :3000)"
   },
@@ -73,6 +73,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "ignore-styles": "^5.0.1",
+    "jsdom": "^11.11.0",
     "mini-css-extract-plugin": "^0.4.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.17.5",

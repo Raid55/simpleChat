@@ -5,6 +5,7 @@
 - MongoDB v3.6.5 or above
 - Node v9.9.0 or above && npm v5.6.0 or above
 - Google chrome v67 or above
+- Preferably a 15' inch computer screen or browser window, I don't know if the css will work beyond or bellow that
 
 ### Building app and starting API
 There are two different ways you can build the app, all in one or each part separately.
