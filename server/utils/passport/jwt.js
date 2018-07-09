@@ -20,7 +20,7 @@ module.exports = new JwtStrategy(opts, (token, done) => {
 			return user;
 		})
 		.catch(err => {
-			console.log("jwt-strat", err); /* eslint-disable-line babel/quotes */ // stings "" keys ''
+			console.error("jwt-strat", err); /* eslint-disable-line babel/quotes */ // stings "" keys ''
 			done(err, false); // eslint-disable-line promise/no-callback-in-promise
 		});
 });

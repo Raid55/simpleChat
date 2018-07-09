@@ -26,7 +26,7 @@ router.post('/:rId', (req, res) => {
 				return room;
 			})
 			.catch(err => {
-				console.log("api/create/msg: ", err); /* eslint-disable-line babel/quotes */ // stings "" keys ''
+				console.error("api/create/msg: ", err); /* eslint-disable-line babel/quotes */ // stings "" keys ''
 				res.status(401).json({
 					success: false,
 					msg: "could not create msg", /* eslint-disable-line babel/quotes */ // stings "" keys ''

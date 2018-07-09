@@ -56,7 +56,7 @@ router.get('/:rId', (req, res) => {
 				return re[1];
 			})
 			.catch(err => {
-				console.log('api/room : ', err);
+				console.error('api/room : ', err);
 				res.status(400).json({
 					success: false,
 					msg: "could not find room or add room to user", /* eslint-disable-line babel/quotes */ // stings "" keys ''

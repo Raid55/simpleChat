@@ -38,8 +38,8 @@ now its time to start up the app:
  - This app is not ready for production, there are a lot of things that aren't in place and it will become evident as you read through the limitations.
 - Made only for 1 CPU
  - You cannot cluster this app in its current state, socket IO won't work unless you provide some sort of proxy for it(redis). You would also have to use PM2 or rewrite some of the code to enable cluster mode.
-- No React tests
- - While I tried my best to write modular code and define every PropType. I am not very experienced writing front-end tests so I focused instead writing the app well and keeping it organized.
+- ~~No~~ React tests (work in progress)
+ - While I tried my best to write modular code and define every PropType, I am not very experienced writing front-end tests so I focused instead writing the app well and keeping it organized. (Update) I have read up on react testing and have set up and environment with all the required tools to get started, I am writing my first few component test and they should be pushed as soon as the tests are tested...
 - No logger
   - I started by console logging everything with text tags but I felt like that was sloppy, I did some research into implementing a good logger that would both work for the console but also log to a file, WinstonJS came up and I started looking into it. I already tried to configure it but I couldn't get it to work the way I wanted to so I have to rethink my approach.
 - No rate limiting

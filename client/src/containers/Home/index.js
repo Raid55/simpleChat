@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect }         from 'react-router-dom';
 
 import './styles.css';
 
@@ -105,8 +105,9 @@ class Home extends Component {
 
 	joinRoom (e) {
 		e.preventDefault();
+		const {joinRoomId} = this.state.textData;
 
-		this.redirectUser(`/${this.state.textData.joinRoomId}`);
+		if (joinRoomId.length !== 0) this.redirectUser(`/${joinRoomId}`);
 	}
 
 	onChange (e) {

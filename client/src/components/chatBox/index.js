@@ -53,7 +53,7 @@ class ChatBox extends Component {
 			else if (el.match(/\$[a-zA-Z]+/g)) {
 				return <span key={idx} data-tip data-for={el.substr(1).toUpperCase()} className="stockTag">{el}</span>;
 			}
-			else if(el.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/)) {
+			else if (el.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/)) { /* eslint-disable-line no-useless-escape */
 				return <a key={idx} target="_blank" className="msgLink" href={el}>{el}</a>;
 			}
 			else {
@@ -143,13 +143,12 @@ class ChatBox extends Component {
 				return this.state.stockList.reduce((accu, el) => {
 					if (!accu[el]) accu[el] = {quote: {latestPrice: "invalid"}};
 					return accu;
-				}, re)
+				}, re);
 			})
 			.then(ree => {
 				console.log(ree);
 				this.setState({
 					stockPrices: Object.keys(ree).reduce((accu, el) => {
-						console.log(accu[el])
 						accu[el] = ree[el].quote.latestPrice;
 						return accu;
 					}, {}),

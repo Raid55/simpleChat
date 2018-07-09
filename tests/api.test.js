@@ -1,8 +1,7 @@
 /* global describe, before, after, it */
 
 const request = require('supertest');
-const chai = require('chai');
-const expect = chai.expect;
+const { expect } = require('chai');
 
 describe('Loading all assets and checking all basic endpoints', () => {
 	let server;
@@ -21,7 +20,11 @@ describe('Loading all assets and checking all basic endpoints', () => {
 		done();
 	});
 
-	// First testing for status of api
+	/*
+		Testing assets
+	*/
+
+	// checking for server status
 	it('status API should return 200', done => {
 		request(server)
 			.get('/api/status')
@@ -71,6 +74,11 @@ describe('Loading all assets and checking all basic endpoints', () => {
 			.expect(200, done);
 	});
 
+	/*
+		User creation
+	*/
+
+	// creating user named supertest
 	it('should create user', done => {
 		request(server)
 			.post('/api/create/user')
@@ -89,7 +97,7 @@ describe('Loading all assets and checking all basic endpoints', () => {
 				}
 			});
 	});
-
+	// testing if different json key is sent, in this case it is set to name
 	it('shoulden\'t create user if no username', done => {
 		request(server)
 			.post('/api/create/user')
@@ -103,7 +111,7 @@ describe('Loading all assets and checking all basic endpoints', () => {
 				}
 			});
 	});
-
+	// testing if username is more than 18 chars
 	it('shoulden\'t create user if username > 18', done => {
 		request(server)
 			.post('/api/create/user')
@@ -117,6 +125,10 @@ describe('Loading all assets and checking all basic endpoints', () => {
 				}
 			});
 	});
+
+	/*
+		Making calls to the server
+	*/
 
 	it('should fetch user info (with token)', done => {
 		request(server)
@@ -141,6 +153,7 @@ describe('Loading all assets and checking all basic endpoints', () => {
 			.expect(401, done);
 	});
 
+	// testing room creation
 	it('should create room (with token)', done => {
 		request(server)
 			.get('/api/create/room')
@@ -164,6 +177,7 @@ describe('Loading all assets and checking all basic endpoints', () => {
 			.expect(401, done);
 	});
 
+	// after room creation, it should add room to user list
 	it('roomsJoined should have room(with token)', done => {
 		request(server)
 			.get('/api/user')
@@ -182,6 +196,7 @@ describe('Loading all assets and checking all basic endpoints', () => {
 			});
 	});
 
+	// user should be able to get room info
 	it('should get room info(with token)', done => {
 		request(server)
 			.get(`/api/room/${roomLink}`)
@@ -192,6 +207,7 @@ describe('Loading all assets and checking all basic endpoints', () => {
 				else {
 					expect(res.body.success).to.be.equal(true);
 					expect(res.body.room).to.be.an("object");
+					expect(res.body.user).to.be.an("object");
 
 					done();
 				}
@@ -202,7 +218,14 @@ describe('Loading all assets and checking all basic endpoints', () => {
 			.get(`/api/room/${roomLink}`)
 			.expect(401, done);
 	});
+	it('should\'nt get room info with wrong room id(with token)', done => {
+		request(server)
+			.get(`/api/room/12345678`)
+			.set('Authorization', `Bearer ${token}`)
+			.expect(400, done);
+	});
 
+	// testing sending messages to API
 	it('should send message with text(with token)', done => {
 		request(server)
 			.post(`/api/create/msg/${roomLink}`)
@@ -230,7 +253,15 @@ describe('Loading all assets and checking all basic endpoints', () => {
 			.post(`/api/create/msg/${roomLink}`)
 			.expect(401, done);
 	});
+	it('should\'nt send message with bad room id(with token)', done => {
+		request(server)
+			.post(`/api/create/msg/12345678`)
+			.set('Authorization', `Bearer ${token}`)
+			.send({text: 'test msg'})
+			.expect(400, done);
+	});
 
+	// creating second user to test chat and room join
 	it('creating second user, tmpUser', done => {
 		request(server)
 			.post('/api/create/user')

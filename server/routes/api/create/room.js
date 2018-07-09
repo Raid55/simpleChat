@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
 			return re[1];
 		})
 		.catch(err => {
-			console.log("/create/room : ", err); /* eslint-disable-line babel/quotes */ // stings "" keys ''
+			console.error("/create/room : ", err); /* eslint-disable-line babel/quotes */ // stings "" keys ''
 			res.status(400).json({
 				success: false,
 				msg: "Could not save room add/or room to user", /* eslint-disable-line babel/quotes */ // stings "" keys ''

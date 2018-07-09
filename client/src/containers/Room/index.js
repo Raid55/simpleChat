@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import PropTypes            from 'prop-types';
+import { Redirect }         from 'react-router-dom';
 
 import './styles.css';
 
 import ChatLegend from './chatLegend.js';
 import ChatBox    from '../../components/chatBox';
 
-import apiClient from '../../utils/apiCalls.js';
+import apiClient  from '../../utils/apiCalls.js';
 
 class Room extends Component {
 	constructor (props) {

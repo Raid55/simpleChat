@@ -24,7 +24,7 @@ module.exports = (socket, next) => {
 						return user;
 					})
 					.catch(err => {
-						console.log("socket IO auth: ", err); /* eslint-disable-line babel/quotes */ // stings "" keys ''
+						console.error("socket IO auth: ", err); /* eslint-disable-line babel/quotes */ // stings "" keys ''
 						next(manErr); // eslint-disable-line promise/no-callback-in-promise
 					});
 			}
