@@ -146,7 +146,6 @@ class ChatBox extends Component {
 				}, re);
 			})
 			.then(ree => {
-				console.log(ree);
 				this.setState({
 					stockPrices: Object.keys(ree).reduce((accu, el) => {
 						accu[el] = ree[el].quote.latestPrice;
