@@ -17,7 +17,7 @@ const createUser = {
 	success: true,
 	token: "dummy token",
 	user: {
-		username: "testUsertheReturn",
+		username: "testUser",
 		roomsJoined: [],
 	},
 };

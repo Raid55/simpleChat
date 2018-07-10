@@ -15,7 +15,7 @@ class RoomCreate extends Component {
 					have a room you can invite as many people as you want
 					by giving them your room id.
 				</div>
-				<button onClick={createRoom}>Create a New Room</button>
+				<button name="createRoom" onClick={createRoom}>Create a New Room</button>
 				{ err ? <div className="err">{errMsg}</div> : null }
 			</>
 		);
