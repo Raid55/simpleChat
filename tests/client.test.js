@@ -12,130 +12,156 @@ Enzyme.configure({ adapter: new Adapter() });
 import Room from '../client/src/containers/Room';
 import Home from '../client/src/containers/Home';
 
-import Signup     from '../../components/signup';
-import RoomList   from '../../components/roomList';
-import RoomCreate from '../../components/roomCreate';
-import RoomJoin   from '../../components/roomJoin';
+import Signup     from '../client/src/components/signup';
+import RoomList   from '../client/src/components/roomList';
+import RoomCreate from '../client/src/components/roomCreate';
+import RoomJoin   from '../client/src/components/roomJoin';
 import ChatBox    from '../client/src/components/chatBox';
 
+import payloads from './mockPayloads.js';
 
 describe('testing full render', () => {
 	// before(() => {
-		
+	// 	nock()
 	// });
 
-	// after(done => {
-		
-	// });
+	after(done => {
+		done();
+	});
 
 	describe('Home container', () => {
+		let homeContainer;
+
+		before(() => {
+			// setting mock endpoints
+			nock('http://localhost')
+				.post('/api/create/user')
+				.reply(201, payloads.createUser);
+
+			nock('http://localhost')
+				.get('/api/user')
+				.reply(201, payloads.getUser);
+
+			// mounting home container
+			homeContainer = mount(<Home />);
+		});
+
+		after(done => {
+			nock.cleanAll();
+			nock.isDone();
+			homeContainer.unmount();
+			done();
+		});
+
 		it('updates value(in state) when text is input to user register', done => {
-
+			homeContainer.find('input').simulate('change', {target: {name: "signupUsername", value: "test"}});
+			expect(homeContainer.state().textData.signupUsername).to.equal("test");
+			done();
 		});
 
-		it('on click to create user, makes a call to API, re-renders once call is done', done => {
+		// it('on click to create user, makes a call to API, re-renders once call is done', done => {
 
-		});
+		// });
 
-		it('user sees populated homepage now that token is stored and sent with every api request', done => {
+		// it('user sees populated homepage now that token is stored and sent with every api request', done => {
 
-		});
+		// });
 
-		it('clicking on create rooms calls create room func', done => {
+		// it('clicking on create rooms calls create room func', done => {
 
-		});
+		// });
 
-		it('clicking on join room with text in input calls join room func', done => {
+		// it('clicking on join room with text in input calls join room func', done => {
 
-		});
+		// });
 	});
 
-	describe('Room container', () => {
-		it('test if state msg array is same size as props input array', done => {
+	// describe('Room container', () => {
+	// 	it('test if state msg array is same size as props input array', done => {
 
-		});
+	// 	});
 
-		it('test if msg bubbles have been rendered', done => {
+	// 	it('test if msg bubbles have been rendered', done => {
 
-		});
+	// 	});
 
-		it('clicking on send will call send msg call with msg', done => {
+	// 	it('clicking on send will call send msg call with msg', done => {
 
-		});
+	// 	});
 
-		it('back button will call backBtn function', done => {
+	// 	it('back button will call backBtn function', done => {
 
-		});
+	// 	});
 
-		it('room and room id rendered properly', done => {
+	// 	it('room and room id rendered properly', done => {
 
-		});
-	});
+	// 	});
+	// });
 
 });
 
 // in charge of testing component methods and what not
-describe('testing individual components', () => {
+// describe('testing individual components', () => {
 
-	describe('roomList component', () => {
-		it('renders \'no rooms\' when empy array sent in props', done => {
+// 	describe('roomList component', () => {
+// 		it('renders \'no rooms\' when empy array sent in props', done => {
 
-		});
-		it('renders list of rooms that where in array provided', done => {
+// 		});
+// 		it('renders list of rooms that where in array provided', done => {
 
-		});
-	});
+// 		});
+// 	});
 
-	describe('chatBox component', () => {
-		it('parses msg with parseMsg functuon', done => {
+// 	describe('chatBox component', () => {
+// 		it('parses msg with parseMsg functuon', done => {
 
-		});
+// 		});
 
-		it('counts stock in msg with parseForAllStocks function', done => {
+// 		it('counts stock in msg with parseForAllStocks function', done => {
 
-		});
-	});
+// 		});
+// 	});
 
-});
+// });
 
 // takes care of how app handles bad requests
-describe('testing for errors', () => {
-	describe('components render err msg when err prop is passed true', () => {
-		it('signup', done => {
+// describe('testing for errors', () => {
+// 	describe('components render err msg when err prop is passed true', () => {
+// 		it('signup', done => {
 
-		});
+// 		});
 
-		it('roomList', done => {
+// 		it('roomList', done => {
 
-		});
+// 		});
 
-		it('roomJoin', done => {
+// 		it('roomJoin', done => {
 
-		});
+// 		});
 
-		it('roomCreate', done => {
+// 		it('roomCreate', done => {
 
-		});
+// 		});
 
-		it('chatBox', done => {
-			// will have to load stock api to do both
-		})
-	});
+// 		it('chatBox', done => {
+// 			// will have to load stock api to do both
+// 		})
+// 	});
 
-	describe('nothing happens when nothing is in input box', () => {
-		it('signup', done => {
+// 	describe('nothing happens when nothing is in input box', () => {
+// 		it('signup', done => {
 
-		});
+// 		});
 
-		it('roomJoin', done => {
+// 		it('roomJoin', done => {
 
-		});
+// 		});
 
-		it('chatBox', done => {
+// 		it('chatBox', done => {
 			
-		})
-	});
-});
+// 		})
+// 	});
+// });
 
 // WORK IN PROGRESS
 

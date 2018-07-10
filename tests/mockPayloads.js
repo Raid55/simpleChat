@@ -75,7 +75,7 @@ const getRoom = {
 				},
 				 type : "joined",
 				 createdAt : "2018-07-07T16:30:58.184Z",
-				 updatedAt : "2018-07-07T16:30:58.184Z".
+				 updatedAt : "2018-07-07T16:30:58.184Z",
 			},
 			{
 				 _id : "5b40eac2433afe0269d585da",
@@ -100,3 +100,13 @@ const getRoom = {
 const createMsg = {
 	success: true,
 };
+
+module.exports = {
+	createMsg: createMsg,
+	createRoom: createRoom,
+	createUser: createUser,
+	getRoom: getRoom,
+	getUser: getUser,
+	getUserNoRooms: getUserNoRooms,
+	defaultErr: defaultErr,
+}
